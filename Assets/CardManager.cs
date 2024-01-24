@@ -14,6 +14,7 @@ public class CardManager : MonoBehaviour
     public Transform cardParent;
 
     public List<Transform> cardSlots = new List<Transform>();
+    public bool durationCardAcitve;
 
     private void Awake()
     {
@@ -24,6 +25,35 @@ public class CardManager : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+    public void LockAllNonUsableCards()
+    {
+        CardManager.Instance.durationCardAcitve = true;
+
+        for (int i = 0; i < cardSlots.Count; i++)
+        {
+            Card card = cardSlots[i].gameObject.GetComponent<Card>();
+
+            if(card != null)
+            {
+                card.Lock();
+            }
+        }
+
+    }
+    public void UnLockAllNonUsableCards()
+    {
+        CardManager.Instance.durationCardAcitve = false;
+
+        for (int i = 0; i < cardSlots.Count; i++)
+        {
+            Card card = cardSlots[i].gameObject.GetComponent<Card>();
+
+            if (card != null)
+            {
+                card.UnLock();
+            }
         }
     }
 
@@ -106,7 +136,16 @@ public class CardManager : MonoBehaviour
         GameObject prefab = cardsInDeck[availableCardIndexs[index]].prefab;
 
         GameObject go = Instantiate(prefab, worldPos, Quaternion.identity, cardParent);
-        return go.GetComponent<Card>();
+
+        Card card = go.GetComponent<Card>();
+
+        if(durationCardAcitve)
+        {
+            card.Lock();
+        }
+
+
+        return card;
     }
 
 

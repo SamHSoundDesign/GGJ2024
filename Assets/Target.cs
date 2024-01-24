@@ -4,10 +4,38 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    public int health;
+
+    public bool isInvicible = false;
+
+    GridPoint gp;
+
+    private void Start()
+    {
+        health = GameManager.Instance.targetStartingHealth;
+    }
     private void OnMouseDown()
     {
-        GridPoint gp = GetComponentInParent<GridPoint>();
-        gp.Hit();
+        if(isInvicible == false)
+        { 
+            DoDamange(GameManager.Instance.damagePerClick);
+        }
+    }
+
+    public void DoDamange(int amount)
+    {
+        health -= amount;
+
+        if(health <= 0)
+        {
+            if(gp == null)
+            {
+                gp = GetComponentInParent<GridPoint>();
+            }
+            
+            gp.Kill();
+        }
+
     }
 
 

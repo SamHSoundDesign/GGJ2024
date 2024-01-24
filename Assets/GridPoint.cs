@@ -13,6 +13,7 @@ public class GridPoint : MonoBehaviour
     private float cooldownDuration = 1f;
     private float cooldownTime;
 
+
     public void Activate(GameObject targetPrefab, float duration)
     {
         isActive = true;
@@ -68,10 +69,11 @@ public class GridPoint : MonoBehaviour
         cooldownTime = Time.time + cooldownDuration;
     }
 
-    public void Hit()
+    public void Kill()
     {
         //Particle or animation 
-
+        Vector3 targetPos = target.transform.position;
+        Instantiate(GameManager.Instance.otterDeath_particle, targetPos, Quaternion.identity, transform);
         UIManager.Instance.Hit();
         Deactivate();
 

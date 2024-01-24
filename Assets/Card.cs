@@ -8,24 +8,44 @@ public class Card : MonoBehaviour
     public float duration = 3f;
     public bool isPermanent = false;
 
+    protected bool debug = false;
+
+    private bool isLocked = false;
+
     public virtual void ActivateCard()
     {
         Debug.Log(cardID + "Card played : " + cardID + " Well done you.");
 
         if (isPermanent == false)
         {
+            CardManager.Instance.LockAllNonUsableCards();
             StartCoroutine(DeactiveEffect(duration));
         }
     }
-
+    public virtual void Lock()
+    {
+        isLocked = true;
+    }
+    public virtual void UnLock()
+    {
+        isLocked = false;
+    }
     public virtual void DeativateEffects()
     {
-        Debug.Log(cardID + " Card played. Well done you.");
+        CardManager.Instance.UnLockAllNonUsableCards();
+
+
+        if (debug)
+            Debug.Log(cardID + " Card played. Well done you.");
     }
 
     private void OnMouseDown()
     {
-        ActivateCard();
+        if (isLocked == false)
+        {
+            ActivateCard();
+            return;
+        }
     }
 
     protected IEnumerator DeactiveEffect(float wait)

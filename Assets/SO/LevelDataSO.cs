@@ -11,6 +11,6 @@ public class LevelDataSO : ScriptableObject
     public bool randomiseCardOrder = false;
     public int totalHits = 0;
     public int reachHighMultiplier = 0;
-    public float fixedTime = 0;
+    public float levelTimeLimit = 30f;
 
 }

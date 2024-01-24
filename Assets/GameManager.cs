@@ -12,14 +12,22 @@ public class GameManager : MonoBehaviour
 
     public event Action startLevel;
     public event Action gamePaused;
+    public event Action gameUnPaused;
     public event Action levelComplete;
     public event Action levelChanged;
+    public event Action levelFailed;
 
     public int levelNumber = 0;
     public List<LevelDataSO> levelDatas;
     public LevelDataSO currentLevelData;
 
+    public float levelStartTime;
+    public float levelEndTime;
+
+    public int damagePerClick = 2;
+
     //Spawns
+    public GameObject otterDeath_particle;
 
     public float respawnRate;
     public float lifeSpan = 0.5f;
@@ -27,6 +35,7 @@ public class GameManager : MonoBehaviour
     private float defaultLifeSpan = 3f;
 
     private float nextRespawn;
+    public int targetStartingHealth = 4;
 
     private void Awake()
     {
@@ -43,6 +52,20 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitialiseDefaultValues();
+        gamePaused += PauseGame;
+        gameUnPaused += UnPauseGame;
+    }
+
+    private void UnPauseGame()
+    {
+        gamestate = Gamestate.Running;
+        Time.timeScale = 1;
+    }
+
+    private void PauseGame()
+    {
+        gamestate = Gamestate.Paused;
+        Time.timeScale = 0;
     }
 
     public void StartGameEffect(GameEffect gameEffect, bool isPermenent)
@@ -88,20 +111,30 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            if(gamestate == Gamestate.Menu)
+            switch (gamestate)
             {
-                StartGame();
-            }
-            else
-            {
-                gamestate = Gamestate.Paused;
-                gamePaused?.Invoke();
+                case Gamestate.Running:
+                    gamePaused?.Invoke();
+                    break;
+                case Gamestate.Paused:
+                    gameUnPaused?.Invoke();
+                    break;
+                case Gamestate.Menu:
+                    StartGame();
+                    break;
             }
         }
 
         switch (gamestate)
         {
             case Gamestate.Running:
+
+                if(Time.time > levelEndTime)
+                {
+                    // FAILED
+                    levelFailed?.Invoke();
+                }
+
                 if (Time.time > nextRespawn)
                 {
                     GridPoint gridPoint = GameGrid.Instance.GetRandomGridPoint();
@@ -120,10 +153,13 @@ public class GameManager : MonoBehaviour
     {
         SetNextSpawnTime(respawnRate);
         gamestate = Gamestate.Running;
-        SetLevelNumber();
+        SetupLevelData();
+        levelStartTime = Time.time;
+        levelEndTime = levelStartTime + currentLevelData.levelTimeLimit;
+        startLevel?.Invoke();
     }
 
-    private void SetLevelNumber()
+    private void SetupLevelData()
     {
         levelNumber++;
 
@@ -133,11 +169,8 @@ public class GameManager : MonoBehaviour
             {
                 currentLevelData = levelDatas[i];
                 levelChanged?.Invoke();
-
             }
         }
-
-        startLevel?.Invoke();
     }
 
     public void SetNextSpawnTime(float delay)
@@ -146,7 +179,7 @@ public class GameManager : MonoBehaviour
     }
 }
 
-    public enum Gamestate
+public enum Gamestate
 {
     Running,
     Paused,
