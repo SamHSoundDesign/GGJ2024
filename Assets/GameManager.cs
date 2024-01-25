@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
 
     private float nextRespawn;
     public int targetStartingHealth = 4;
+    public event Action otterKilled;
+
+    public int killCount = 0;
+    public int multiplierCount = 0;
 
     private void Awake()
     {
@@ -48,42 +52,81 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
-
     private void Start()
     {
         InitialiseDefaultValues();
         gamePaused += PauseGame;
         gameUnPaused += UnPauseGame;
+        otterKilled += OtterKilled;
+        levelComplete += OnLevelComplete;
     }
+    private void OnLevelComplete()
+    {
+        gamestate = Gamestate.Paused;
+    }
+    public void OtterKilled()
+    {
+        killCount++;
 
+        if(HasWon())
+        {
+            levelComplete?.Invoke();
+        }
+    }
+    private bool HasWon()
+    {
+
+        bool hasWon = false;
+        bool killsRequired = currentLevelData.totalKills != 0;
+        bool highMultiplierRequired = currentLevelData.reachHighMultiplier != 0;
+
+        if(killsRequired && highMultiplierRequired)
+        {
+            if(killCount >= currentLevelData.totalKills && multiplierCount >= currentLevelData.reachHighMultiplier)
+            {
+                hasWon = true;
+            }
+        }   
+        else if(killsRequired && highMultiplierRequired == false)
+        {
+            if (killCount >= currentLevelData.totalKills)
+            {
+                hasWon = true;
+            }
+        }
+        else if (killsRequired== false && highMultiplierRequired)
+        {
+            if (multiplierCount >= currentLevelData.reachHighMultiplier)
+            {
+                hasWon = true;
+            }
+        }
+
+        return hasWon;
+    }
     private void UnPauseGame()
     {
         gamestate = Gamestate.Running;
         Time.timeScale = 1;
     }
-
     private void PauseGame()
     {
         gamestate = Gamestate.Paused;
         Time.timeScale = 0;
     }
-
     public void StartGameEffect(GameEffect gameEffect, bool isPermenent)
     {
         Debug.Log("START GAME EFFECT CALLED - NO LOGIC DADDED. GameEffect = " + gameEffect.ToString());
     }
-
     private void InitialiseDefaultValues()
     {
         defaultLifeSpan = lifeSpan;
         defaultSpeed = respawnRate;
     }
-
     public void DefaultSpeed()
     {
         respawnRate = defaultSpeed;
     }
-
     public bool SetNewRespawnRate(float newSpeed, bool isPermanent)
     {
         if(respawnRate > newSpeed && isPermanent == false)
@@ -106,7 +149,6 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
@@ -135,12 +177,19 @@ public class GameManager : MonoBehaviour
                     levelFailed?.Invoke();
                 }
 
+                if(HasWon())
+                {
+                    levelComplete?.Invoke();
+                }
+
                 if (Time.time > nextRespawn)
                 {
                     GridPoint gridPoint = GameGrid.Instance.GetRandomGridPoint();
                     gridPoint.Activate(targetPrefab, lifeSpan);
                     SetNextSpawnTime(respawnRate);
                 }
+
+
                 break;
             case Gamestate.Paused:
                 break;
@@ -148,7 +197,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
     public void StartGame()
     {
         SetNextSpawnTime(respawnRate);
@@ -158,7 +206,6 @@ public class GameManager : MonoBehaviour
         levelEndTime = levelStartTime + currentLevelData.levelTimeLimit;
         startLevel?.Invoke();
     }
-
     private void SetupLevelData()
     {
         levelNumber++;
@@ -172,10 +219,14 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public void SetNextSpawnTime(float delay)
     {
         nextRespawn = Time.time + delay;
+    }
+
+    public void ContinueToNextLevel()
+    {
+        SetupLevelData();
     }
 }
 

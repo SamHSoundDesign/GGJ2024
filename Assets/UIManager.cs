@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    public event Action hitAction;
 
     private void Awake()
     {
@@ -21,8 +20,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void Hit()
-    {
-        hitAction?.Invoke();
-    }
 }

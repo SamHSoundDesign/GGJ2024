@@ -17,7 +17,6 @@ public class GridPoint : MonoBehaviour
     public void Activate(GameObject targetPrefab, float duration)
     {
         isActive = true;
-
         SpawnTarget(targetPrefab);
         SetDeactivateTimer(duration);
     }
@@ -41,7 +40,6 @@ public class GridPoint : MonoBehaviour
         {
             isCoolingDown = false;
         }
-
     }
 
     private void SpawnTarget(GameObject targetPrefab)
@@ -76,7 +74,6 @@ public class GridPoint : MonoBehaviour
         Instantiate(GameManager.Instance.otterDeath_particle, targetPos, Quaternion.identity, transform);
         UIManager.Instance.Hit();
         Deactivate();
-
     }
 
 }

@@ -7,10 +7,9 @@ public class HitCounter : MonoBehaviour
 {
     string defaultText;
     private TextMeshProUGUI tmp;
-    private int hits = 0;
     private void Awake()
     {
-        UIManager.Instance.hitAction += UpdateUI;
+        GameManager.Instance.otterKilled += UpdateUI;
     }
 
     private void Start()
@@ -21,8 +20,6 @@ public class HitCounter : MonoBehaviour
 
     public void UpdateUI()
     {
-        hits += 1;
-
-        tmp.text = defaultText + hits;
+        tmp.text = defaultText + GameManager.Instance.killCount;
     }
 }

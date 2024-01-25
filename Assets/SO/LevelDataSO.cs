@@ -9,7 +9,7 @@ public class LevelDataSO : ScriptableObject
     public List<CardSO> availableCardSOs;
     public int startingCardsAmount = 3;
     public bool randomiseCardOrder = false;
-    public int totalHits = 0;
+    public int totalKills = 0;
     public int reachHighMultiplier = 0;
     public float levelTimeLimit = 30f;
 

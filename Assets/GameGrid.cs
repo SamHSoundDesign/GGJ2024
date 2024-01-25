@@ -8,12 +8,14 @@ public class GameGrid : MonoBehaviour
     public int rows;
     public int cols;
     private GridPoint[,] inactiveGridPoints;
+    [SerializeField] private GameObject defaultGridParent;
 
     public float resolution;
     public GameObject gameGridPlaceholder;
 
     [SerializeField] private GameObject gridPointPrefab;
 
+    [SerializeField] private bool generateGridSystemically = false;
     private void Awake()
     {
         if(Instance == null)
@@ -27,7 +29,32 @@ public class GameGrid : MonoBehaviour
     }
     private void Start()
     {
-        SpawnGrid(rows, cols, resolution);
+        if(generateGridSystemically)
+        {
+            SpawnGrid(rows, cols, resolution);
+        }
+        else
+        {
+
+            rows = defaultGridParent.transform.childCount;
+            cols = defaultGridParent.transform.GetChild(0).transform.childCount;
+            inactiveGridPoints = new GridPoint[cols, rows];
+
+            List<Transform> goRows = new List<Transform>();
+
+            for (int i = 0; i < rows; i++)
+            {
+                goRows.Add(defaultGridParent.transform.GetChild(i));
+            }
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < cols; col++)
+                {
+                    inactiveGridPoints[col, row] = goRows[row].GetChild(col).GetComponent<GridPoint>();
+                }
+            }
+        }
     }
     public void SpawnGrid(int cols, int rows, float resolution)
     {
@@ -47,7 +74,6 @@ public class GameGrid : MonoBehaviour
             }
         }
     }
-
     public void DestroyGrid()
     {
 
