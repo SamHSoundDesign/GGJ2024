@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int levelNumber = 0;
     public List<LevelDataSO> levelDatas;
     public LevelDataSO currentLevelData;
+    public event Action otterKilled;
 
     public float levelStartTime;
     public float levelEndTime;
@@ -36,7 +37,6 @@ public class GameManager : MonoBehaviour
 
     private float nextRespawn;
     public int targetStartingHealth = 4;
-    public event Action otterKilled;
 
     public int killCount = 0;
     public int multiplierCount = 0;
@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
         InitialiseDefaultValues();
         gamePaused += PauseGame;
         gameUnPaused += UnPauseGame;
-        otterKilled += OtterKilled;
         levelComplete += OnLevelComplete;
     }
     private void OnLevelComplete()
@@ -72,6 +71,8 @@ public class GameManager : MonoBehaviour
         {
             levelComplete?.Invoke();
         }
+
+        otterKilled?.Invoke();
     }
     private bool HasWon()
     {

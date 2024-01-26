@@ -13,19 +13,16 @@ public class GridPoint : MonoBehaviour
     private float cooldownDuration = 1f;
     private float cooldownTime;
 
-
     public void Activate(GameObject targetPrefab, float duration)
     {
         isActive = true;
         SpawnTarget(targetPrefab);
         SetDeactivateTimer(duration);
     }
-
     private void SetDeactivateTimer(float duration)
     {
         stopTime = Time.time + duration;
     }
-
     private void Update()
     {
         if (isActive == false && isCoolingDown == false)
@@ -41,7 +38,6 @@ public class GridPoint : MonoBehaviour
             isCoolingDown = false;
         }
     }
-
     private void SpawnTarget(GameObject targetPrefab)
     {
         if(target != null)
@@ -52,13 +48,11 @@ public class GridPoint : MonoBehaviour
         GameObject newTarget = Instantiate(targetPrefab, transform.position, transform.rotation, transform);
         target = newTarget;
     }
-
     private void DestroyTarget()
     {
         Destroy(target);
         target = null;
     }
-
     public void Deactivate()
     {
         isActive = false;
@@ -66,14 +60,11 @@ public class GridPoint : MonoBehaviour
         isCoolingDown = true;
         cooldownTime = Time.time + cooldownDuration;
     }
-
     public void Kill()
     {
-        //Particle or animation 
         Vector3 targetPos = target.transform.position;
         Instantiate(GameManager.Instance.otterDeath_particle, targetPos, Quaternion.identity, transform);
-        UIManager.Instance.Hit();
+        GameManager.Instance.OtterKilled();
         Deactivate();
     }
-
 }
