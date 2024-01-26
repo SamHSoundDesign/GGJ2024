@@ -41,6 +41,18 @@ public class GameManager : MonoBehaviour
     public int killCount = 0;
     public int multiplierCount = 0;
 
+
+
+    // AudioRefs
+    [Header("Audio BISHHHHH")]
+    [SerializeField] private AudioSource uiAudioSource;
+    [SerializeField] private AudioSource musicAudioSource;
+    
+    [SerializeField] private AudioAsset otterKillerSFX;
+    [SerializeField] private AudioAsset otterMissedClickSFX;
+    [SerializeField] private AudioAsset levelWinSFX;
+    [SerializeField] private AudioAsset levelLossSFX;
+
     private void Awake()
     {
         if(Instance == null)
@@ -62,6 +74,8 @@ public class GameManager : MonoBehaviour
     private void OnLevelComplete()
     {
         gamestate = Gamestate.Paused;
+
+        levelWinSFX.PlayAudioClip(musicAudioSource);
     }
     public void OtterKilled()
     {
