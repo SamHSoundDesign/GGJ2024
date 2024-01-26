@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int levelNumber = 0;
     public List<LevelDataSO> levelDatas;
     public LevelDataSO currentLevelData;
+    public event Action otterHit;
     public event Action otterKilled;
 
     public float levelStartTime;
@@ -47,8 +48,11 @@ public class GameManager : MonoBehaviour
     [Header("Audio BISHHHHH")]
     [SerializeField] private AudioSource uiAudioSource;
     [SerializeField] private AudioSource musicAudioSource;
-    
-    [SerializeField] private AudioAsset otterKillerSFX;
+    [SerializeField] private AudioSource otterAudioSource;
+
+    [SerializeField] private AudioAsset ui_HitSFX;
+    [SerializeField] private AudioAsset otterHitSFX;
+    [SerializeField] private AudioAsset otterKilledSFX;
     [SerializeField] private AudioAsset otterMissedClickSFX;
     [SerializeField] private AudioAsset levelWinSFX;
     [SerializeField] private AudioAsset levelLossSFX;
@@ -77,9 +81,19 @@ public class GameManager : MonoBehaviour
 
         levelWinSFX.PlayAudioClip(musicAudioSource);
     }
+
+    public void OtterHit()
+    {
+        ui_HitSFX.PlayAudioClip(uiAudioSource);
+        otterHitSFX.PlayAudioClip(otterAudioSource);
+
+        otterHit.Invoke();
+       
+    }
     public void OtterKilled()
     {
         killCount++;
+        otterKilledSFX.PlayAudioClip(otterAudioSource);
 
         if(HasWon())
         {

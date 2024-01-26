@@ -25,6 +25,7 @@ public class Target : MonoBehaviour
     public void DoDamange(int amount)
     {
         health -= amount;
+        GameManager.Instance.OtterHit();
 
         if(health <= 0)
         {
