@@ -12,5 +12,7 @@ public class LevelDataSO : ScriptableObject
     public int totalKills = 0;
     public int reachHighMultiplier = 0;
     public float levelTimeLimit = 30f;
+    public float respawnRate = 0.5f;
+    public float lifeSpan = 3f;
 
 }

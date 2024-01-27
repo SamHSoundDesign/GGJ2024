@@ -1871,6 +1871,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+      propertyPath: levelDatas.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+      propertyPath: levelDatas.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e6b8b26d70660fc47a6a8593ba22bd11, type: 2}
+    - target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+      propertyPath: levelDatas.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8691d1c27c4e26b44bfd88af850e0994, type: 2}
     - target: {fileID: 2490142542714778451, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
       propertyPath: defaultGridParent
       value: 

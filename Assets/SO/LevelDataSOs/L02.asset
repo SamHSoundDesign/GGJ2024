@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e794ecc672fbcd4bb36b23afc435c46, type: 3}
-  m_Name: L01
+  m_Name: L02
   m_EditorClassIdentifier: 
-  levelNumber: 1
-  availableCardSOs:
-  - {fileID: 11400000, guid: 33a96eccbb40b2b45a3c9fee4cc4ddfb, type: 2}
-  - {fileID: 11400000, guid: 230653f05302cb945826199176b8fedc, type: 2}
-  - {fileID: 11400000, guid: 333012b7aea6de743996b4d5d4dbc26c, type: 2}
+  levelNumber: 2
+  availableCardSOs: []
   startingCardsAmount: 2
   randomiseCardOrder: 0
-  totalKills: 5
+  totalKills: 7
   reachHighMultiplier: 0
   levelTimeLimit: 45
-  respawnRate: 0.5
-  lifeSpan: 4
+  respawnRate: 0.4
+  lifeSpan: 3

@@ -11,6 +11,7 @@ public class LevelComplete : MonoBehaviour
     {
         startingPos = gameObject.transform.position;
         GameManager.Instance.levelComplete += ActivateLevelComplete;
+        GameManager.Instance.deactivateLevelComplete += DeactivateLevelComplete;
         subParent.SetActive(false);
 
     }

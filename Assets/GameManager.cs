@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public event Action gamePaused;
     public event Action gameUnPaused;
     public event Action levelComplete;
+    public event Action deactivateLevelComplete;
     public event Action levelChanged;
     public event Action levelFailed;
 
@@ -68,10 +69,11 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        InitialiseDefaultValues();
         gamePaused += PauseGame;
         gameUnPaused += UnPauseGame;
         levelComplete += OnLevelComplete;
+
+        StartGame();
     }
     private void OnLevelComplete()
     {
@@ -160,10 +162,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("START GAME EFFECT CALLED - NO LOGIC DADDED. GameEffect = " + gameEffect.ToString());
     }
-    private void InitialiseDefaultValues()
+    private void InitialiseDefaultValues(LevelDataSO levelDataSO)
     {
-        defaultLifeSpan = lifeSpan;
-        defaultSpeed = respawnRate;
+        killCount = 0;
+        defaultLifeSpan = levelDataSO.lifeSpan;
+        lifeSpan = defaultLifeSpan;
+        defaultSpeed = levelDataSO.respawnRate;
+        respawnRate = defaultSpeed;
+
     }
     public void DefaultSpeed()
     {
@@ -204,7 +210,6 @@ public class GameManager : MonoBehaviour
                     gameUnPaused?.Invoke();
                     break;
                 case Gamestate.Menu:
-                    StartGame();
                     break;
             }
         }
@@ -235,7 +240,7 @@ public class GameManager : MonoBehaviour
                             gridPoint.Activate(targetPrefab, lifeSpan);
                         }
                     }
-                    
+                        
                     SetNextSpawnTime(respawnRate);
                 }
 
@@ -249,11 +254,9 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        SetNextSpawnTime(respawnRate);
         gamestate = Gamestate.Running;
         SetupLevelData();
-        levelStartTime = Time.time;
-        levelEndTime = levelStartTime + currentLevelData.levelTimeLimit;
+        SetNextSpawnTime(respawnRate);
         startLevel?.Invoke();
     }
     private void SetupLevelData()
@@ -268,6 +271,11 @@ public class GameManager : MonoBehaviour
                 levelChanged?.Invoke();
             }
         }
+
+        levelStartTime = Time.time;
+        levelEndTime = levelStartTime + currentLevelData.levelTimeLimit;
+        InitialiseDefaultValues(currentLevelData);
+
     }
     public void SetNextSpawnTime(float delay)
     {
@@ -277,6 +285,11 @@ public class GameManager : MonoBehaviour
     public void ContinueToNextLevel()
     {
         SetupLevelData();
+        deactivateLevelComplete?.Invoke();
+        SetNextSpawnTime(respawnRate);
+
+        startLevel?.Invoke();
+
     }
 }
 
