@@ -79,7 +79,14 @@ public class GameManager : MonoBehaviour
     {
         gamestate = Gamestate.Paused;
 
-        levelWinSFX.PlayAudioClip(musicAudioSource);
+        if(levelWinSFX != null)
+        {
+            levelWinSFX.PlayAudioClip(musicAudioSource);
+        }
+        else
+        {
+            Debug.Log("No level Win SFX on gameManager dummy");
+        }    
     }
 
     public void OtterHit()
@@ -87,13 +94,21 @@ public class GameManager : MonoBehaviour
         ui_HitSFX.PlayAudioClip(uiAudioSource);
         otterHitSFX.PlayAudioClip(otterAudioSource);
 
-        otterHit.Invoke();
+        
        
     }
     public void OtterKilled()
     {
         killCount++;
-        otterKilledSFX.PlayAudioClip(otterAudioSource);
+
+        if(otterKilledSFX != null)
+        {
+            otterKilledSFX.PlayAudioClip(otterAudioSource);
+        }
+        else
+        {
+            Debug.Log("No otterKilled SFX on gamemanager");
+        }
 
         if(HasWon())
         {
