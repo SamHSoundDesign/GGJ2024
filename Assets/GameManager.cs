@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
     public int killCount = 0;
     public int multiplierCount = 0;
 
-
-
     // AudioRefs
     [Header("Audio BISHHHHH")]
     [SerializeField] private AudioSource uiAudioSource;
@@ -229,7 +227,15 @@ public class GameManager : MonoBehaviour
                 if (Time.time > nextRespawn)
                 {
                     GridPoint gridPoint = GameGrid.Instance.GetRandomGridPoint();
-                    gridPoint.Activate(targetPrefab, lifeSpan);
+
+                    if(gridPoint != null)
+                    {
+                        if (gridPoint.isActive == false && gridPoint.isCoolingDown == false)
+                        {
+                            gridPoint.Activate(targetPrefab, lifeSpan);
+                        }
+                    }
+                    
                     SetNextSpawnTime(respawnRate);
                 }
 

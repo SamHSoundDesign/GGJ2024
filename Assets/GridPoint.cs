@@ -28,7 +28,7 @@ public class GridPoint : MonoBehaviour
         if (isActive == false && isCoolingDown == false)
             return;
 
-        if(Time.time > stopTime)
+        if(Time.time > stopTime && isActive)
         {
             Deactivate();
         }
