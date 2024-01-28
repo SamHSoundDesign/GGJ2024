@@ -81,11 +81,7 @@ public class GameManager : MonoBehaviour
         levelComplete += OnLevelComplete;
 
 
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            countdownStart?.Invoke();
-            StartCoroutine(StartGameDelay(gameIntroSoundLenth));
-        }
+        
 
 
         
@@ -216,7 +212,14 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            countdownStart?.Invoke();
+            StartCoroutine(StartGameDelay(gameIntroSoundLenth));
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
         {
             switch (gamestate)
             {
