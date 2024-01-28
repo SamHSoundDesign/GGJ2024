@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private GameEffect gameEffect = GameEffect.None;
 
     public event Action startLevel;
+    public event Action countdownStart;
     public event Action startGame;
     public event Action gamePaused;
     public event Action gameUnPaused;
@@ -79,7 +80,15 @@ public class GameManager : MonoBehaviour
         gameUnPaused += UnPauseGame;
         levelComplete += OnLevelComplete;
 
-        StartCoroutine(StartGameDelay(gameIntroSoundLenth));
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            countdownStart?.Invoke();
+            StartCoroutine(StartGameDelay(gameIntroSoundLenth));
+        }
+
+
+        
     }
 
     public void ContinueToNextLevel()
@@ -91,12 +100,14 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    public void OnPlayGame()
+    {
+
+    }
     private void OnLevelComplete()
     {
         gamestate = Gamestate.LevelComplete;
-
-        
-        
     }
     public void OtterHit()
     {
@@ -262,13 +273,10 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-
         gamestate = Gamestate.Running;
-
         SetupLevelData();
         SetNextSpawnTime(respawnRate);
         startLevel?.Invoke();
-
     }
 
 
