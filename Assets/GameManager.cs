@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         //SetupLevelData();
         deactivateLevelComplete?.Invoke();
+        countdownStart?.Invoke();
         //SetNextSpawnTime(respawnRate);
         StartCoroutine(StartGameDelay(gameIntroSoundLenth));
 
@@ -104,6 +105,8 @@ public class GameManager : MonoBehaviour
     private void OnLevelComplete()
     {
         gamestate = Gamestate.LevelComplete;
+        levelWinSFX.PlayAudioClip(uiAudioSource);
+
     }
     public void OtterHit()
     {

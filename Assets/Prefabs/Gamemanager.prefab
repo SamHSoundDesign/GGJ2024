@@ -189,8 +189,8 @@ MonoBehaviour:
   currentLevelData: {fileID: 0}
   levelStartTime: 0
   levelEndTime: 0
-  damagePerClick: 2
-  gameIntroSoundLenth: 3
+  damagePerClick: 4
+  gameIntroSoundLenth: 4
   otterDeath_particle: {fileID: 6884599266424781551, guid: 07516ba5f79a04c4c946083c47ea842d, type: 3}
   respawnRate: 1
   lifeSpan: 1
@@ -370,8 +370,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 2490142543126503241}
   musicMainMenu: {fileID: 8300000, guid: b179653bd5879174882bc6bbddc50936, type: 3}
-  gameLoopClip1: {fileID: 0}
-  gameLoopClip2: {fileID: 0}
+  countDownClip: {fileID: 8300000, guid: 857d12e34da96fa41a62dccd0f5eda43, type: 3}
+  gameLoopClip1: {fileID: 8300000, guid: a43190f8e6358d043ab846e7b6fff8a9, type: 3}
+  gameLoopClip2: {fileID: 8300000, guid: e49bf6080ed66414ebb5ccaec9ddcb12, type: 3}
 --- !u!1 &2490142543126503242
 GameObject:
   m_ObjectHideFlags: 0
