@@ -6,7 +6,6 @@ using UnityEngine;
 public class LevelDataSO : ScriptableObject
 {
     public int levelNumber = 0;
-    public List<CardSO> availableCardSOs;
     public int startingCardsAmount = 3;
     public bool randomiseCardOrder = false;
     public int points = 1000;
