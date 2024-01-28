@@ -7,13 +7,14 @@ public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClip musicMainMenu;
+    [SerializeField] private AudioClip countDownClip;
     [SerializeField] private AudioClip gameLoopClip1;
     [SerializeField] private AudioClip gameLoopClip2;
     // Start is called before the first frame update
     void Start()
     {
         //GameManager.Instance.startTimer += StartTimer;
-    
+        GameManager.Instance.countdownStart += CountdownStart;
         GameManager.Instance.startLevel += StartLevel;
         GameManager.Instance.levelComplete += LevelComplete;
         GameManager.Instance.levelFailed += LevelFailed;
@@ -25,6 +26,17 @@ public class MusicManager : MonoBehaviour
     private void StartTimer()
     {
          
+    }
+
+    private void CountdownStart()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
+
+        musicSource.clip = countDownClip;
+        musicSource.Play();
     }
 
 
