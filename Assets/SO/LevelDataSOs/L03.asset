@@ -24,3 +24,4 @@ MonoBehaviour:
   respawnRate: 0.3
   lifeSpan: 2
   colorSchemeSO: {fileID: 11400000, guid: 4437d7f09da4835428583f030989fbbc, type: 2}
+  levelMusic: {fileID: 8300000, guid: a43190f8e6358d043ab846e7b6fff8a9, type: 3}

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private GameEffect gameEffect = GameEffect.None;
 
     public event Action startLevel;
+    public event Action startGame;
     public event Action gamePaused;
     public event Action gameUnPaused;
     public event Action levelComplete;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
     // AudioRefs
     [Header("Audio BISHHHHH")]
     [SerializeField] private AudioSource uiAudioSource;
-    [SerializeField] private AudioSource musicAudioSource;
+    
     [SerializeField] private AudioSource otterAudioSource;
 
     [SerializeField] private AudioAsset ui_HitSFX;
@@ -94,14 +95,8 @@ public class GameManager : MonoBehaviour
     {
         gamestate = Gamestate.LevelComplete;
 
-        if(levelWinSFX != null)
-        {
-            levelWinSFX.PlayAudioClip(musicAudioSource);
-        }
-        else
-        {
-            Debug.Log("No level Win SFX on gameManager dummy");
-        }    
+        
+        
     }
     public void OtterHit()
     {
@@ -267,12 +262,16 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
+
         gamestate = Gamestate.Running;
 
         SetupLevelData();
         SetNextSpawnTime(respawnRate);
+        startLevel?.Invoke();
 
     }
+
+
     private void SetupLevelData()
     {
         levelNumber++;

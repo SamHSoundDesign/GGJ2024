@@ -14,4 +14,5 @@ public class LevelDataSO : ScriptableObject
     public float respawnRate = 0.5f;
     public float lifeSpan = 3f;
     public ColorSchemeSO colorSchemeSO;
+    public AudioClip levelMusic;
 }
