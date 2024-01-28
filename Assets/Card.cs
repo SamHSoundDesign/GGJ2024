@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,5 +53,10 @@ public class Card : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         DeativateEffects();
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

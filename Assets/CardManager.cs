@@ -8,8 +8,7 @@ public class CardManager : MonoBehaviour
     public static CardManager Instance;
 
     private List<CardSO> cardsInDeck = new List<CardSO>();
-    private List<int> cardsInHand = new List<int>();
-    private List<int> availableCardIndexs = new List<int>();
+    private List<Card> cardsInHand = new List<Card>();
 
     public Transform cardParent;
 
@@ -29,7 +28,7 @@ public class CardManager : MonoBehaviour
     }
     public void LockAllNonUsableCards()
     {
-        CardManager.Instance.durationCardAcitve = true;
+        durationCardAcitve = true;
 
         for (int i = 0; i < cardSlots.Count; i++)
         {
@@ -44,7 +43,7 @@ public class CardManager : MonoBehaviour
     }
     public void UnLockAllNonUsableCards()
     {
-        CardManager.Instance.durationCardAcitve = false;
+        durationCardAcitve = false;
 
         for (int i = 0; i < cardSlots.Count; i++)
         {
@@ -59,16 +58,24 @@ public class CardManager : MonoBehaviour
 
     public void Start()
     {
-        GameManager.Instance.levelChanged += SetupLevel;
+        GameManager.Instance.pointsChanged += SetupLevel;
         GameManager.Instance.startLevel += StartLevel;
+
     }
     public void SetupLevel()
     {
-        cardsInDeck.Clear();
         cardsInDeck = GameManager.Instance.currentLevelData.availableCardSOs;
     }
     private void StartLevel()
     {
+        foreach (Card card in cardsInHand)
+        {
+            card.Destroy();
+        }
+
+        cardsInHand.Clear();
+        cardsInHand = new List<Card>();
+
         DealStartingCards();
     }
 
@@ -77,47 +84,28 @@ public class CardManager : MonoBehaviour
         LevelDataSO levelDataSO = GameManager.Instance.currentLevelData;
         bool isRandom = levelDataSO.randomiseCardOrder;
 
-        availableCardIndexs.Clear();
-
-        for (int i = 0; i < cardsInDeck.Count; i++)
-        {
-            availableCardIndexs.Add(i);
-        }
-
         for (int i = 0; i < levelDataSO.startingCardsAmount; i++)
         {
-            DealNextCard(isRandom);
+            DealNextCard(isRandom, levelDataSO); ;
         }
     }
 
-    private void DealNextCard(bool random)
+    private void DealNextCard(bool random, LevelDataSO levelDataSO)
     {
         int index;
 
-        if (random)
-        {
-            index = UnityEngine.Random.Range(0, availableCardIndexs.Count);
-        }
-        else
-        {
-            index = 0;
-        }
+        index = UnityEngine.Random.Range(0, levelDataSO.availableCardSOs.Count);
+        Card newCard = SpawnCard(levelDataSO.availableCardSOs[index]);
 
-        Card newCard = SpawnCard(index);
-
-        cardsInHand.Add(availableCardIndexs[index]);
-        availableCardIndexs.RemoveAt(index);
-
-        if(newCard == null)
+        if (newCard == null)
         {
             Debug.Log("New card is null");
             return;
-        }
-            
+        }  
 
     }
 
-    public Card SpawnCard(int index)
+    public Card SpawnCard(CardSO cardSO)
     {
         if(cardsInDeck.Count == 0)
         {
@@ -133,11 +121,13 @@ public class CardManager : MonoBehaviour
 
         int slot = cardsInHand.Count;
         Vector3 worldPos = cardSlots[slot].position;
-        GameObject prefab = cardsInDeck[availableCardIndexs[index]].prefab;
+        GameObject prefab = cardSO.prefab;
 
         GameObject go = Instantiate(prefab, worldPos, Quaternion.identity, cardParent);
-
+        go.GetComponent<CardPrefab>().Setup(cardSO);
         Card card = go.GetComponent<Card>();
+        cardsInHand.Add(card);
+
 
         if(durationCardAcitve)
         {

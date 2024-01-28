@@ -40,6 +40,6 @@ public class CountdownClock : MonoBehaviour
 
     public void SetUI(float timeRemaining)
     {
-        tmp.text = prefix + timeRemaining.ToString("F2");
+        tmp.text = prefix + timeRemaining.ToString("F1");
     }
 }

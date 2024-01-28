@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-public class LevelCounterUI : MonoBehaviour
+public class PointsCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tmp;
     private string defaultText;

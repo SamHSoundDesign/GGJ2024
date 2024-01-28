@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2eab7c75966aa47aea51306e7cca1a, type: 3}
   m_Name: Card_SpeedUp_3X_5Secs
   m_EditorClassIdentifier: 
-  cardID: Card_SpeedUp_2X_10Secs
-  description: Respawn speed is doubled for 10 seconds
-  prefab: {fileID: 6448839253982235970, guid: 2fdce6211d8c72f49bde02d0963379fd, type: 3}
+  cardID: 3X Speed
+  description: 5 seconds
+  prefab: {fileID: 2418613719803598368, guid: 1d548b5d77370fd43b89ef70437e976f, type: 3}
+  sprite: {fileID: 21300000, guid: 7afc59bc6e05b824f87b2bd3974eabba, type: 3}

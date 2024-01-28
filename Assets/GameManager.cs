@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public event Action gameUnPaused;
     public event Action levelComplete;
     public event Action deactivateLevelComplete;
-    public event Action levelChanged;
+    public event Action pointsChanged;
     public event Action levelFailed;
 
     public int levelNumber = 0;
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public int damagePerClick = 2;
 
+    public float gameIntroSoundLenth = 3f;
+
     //Spawns
     public GameObject otterDeath_particle;
 
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
     public int targetStartingHealth = 4;
 
     public int killCount = 0;
-    public int multiplierCount = 0;
+    public int multiplierCount = 1;
 
     // AudioRefs
     [Header("Audio BISHHHHH")]
@@ -55,6 +57,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioAsset otterMissedClickSFX;
     [SerializeField] private AudioAsset levelWinSFX;
     [SerializeField] private AudioAsset levelLossSFX;
+    private int points = 0;
+    [SerializeField] private int hitPointValue = 50;
+    [SerializeField] private int killPointValue = 100;
 
     private void Awake()
     {
@@ -73,7 +78,7 @@ public class GameManager : MonoBehaviour
         gameUnPaused += UnPauseGame;
         levelComplete += OnLevelComplete;
 
-        StartGame();
+        StartCoroutine(StartGameDelay(gameIntroSoundLenth));
     }
 
     public void ContinueToNextLevel()
@@ -81,8 +86,8 @@ public class GameManager : MonoBehaviour
         //SetupLevelData();
         deactivateLevelComplete?.Invoke();
         //SetNextSpawnTime(respawnRate);
-        StartGame();
-        startLevel?.Invoke();
+        StartCoroutine(StartGameDelay(gameIntroSoundLenth));
+
 
     }
     private void OnLevelComplete()
@@ -103,8 +108,8 @@ public class GameManager : MonoBehaviour
         ui_HitSFX.PlayAudioClip(uiAudioSource);
         otterHitSFX.PlayAudioClip(otterAudioSource);
 
-        
-       
+        UpdatePoints(1);
+
     }
     public void OtterKilled()
     {
@@ -119,6 +124,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("No otterKilled SFX on gamemanager");
         }
 
+        UpdatePoints(2);
+
         if(HasWon())
         {
             levelComplete?.Invoke();
@@ -126,35 +133,29 @@ public class GameManager : MonoBehaviour
 
         otterKilled?.Invoke();
     }
+    private void UpdatePoints(int hitCount)
+    {
+        if(hitCount == 1)
+        {
+            points += hitPointValue * multiplierCount;
+        }
+        else if(hitCount == 2)
+        {
+            points += killPointValue * multiplierCount;
+        }
+
+        pointsChanged?.Invoke();
+    }
     private bool HasWon()
     {
-        bool hasWon = false;
-        bool killsRequired = currentLevelData.totalKills != 0;
-        bool highMultiplierRequired = currentLevelData.reachHighMultiplier != 0;
-
-        if(killsRequired && highMultiplierRequired)
+        if(points >= currentLevelData.points)
         {
-            if(killCount >= currentLevelData.totalKills && multiplierCount >= currentLevelData.reachHighMultiplier)
-            {
-                hasWon = true;
-            }
-        }   
-        else if(killsRequired && highMultiplierRequired == false)
-        {
-            if (killCount >= currentLevelData.totalKills)
-            {
-                hasWon = true;
-            }
+            return true;
         }
-        else if (killsRequired== false && highMultiplierRequired)
+        else
         {
-            if (multiplierCount >= currentLevelData.reachHighMultiplier)
-            {
-                hasWon = true;
-            }
+            return false;
         }
-
-        return hasWon;
     }
     private void UnPauseGame()
     {
@@ -177,6 +178,8 @@ public class GameManager : MonoBehaviour
         lifeSpan = defaultLifeSpan;
         defaultSpeed = levelDataSO.respawnRate;
         respawnRate = defaultSpeed;
+        points = 0;
+        multiplierCount = 1;
 
     }
     public void DefaultSpeed()
@@ -265,9 +268,10 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         gamestate = Gamestate.Running;
+
         SetupLevelData();
         SetNextSpawnTime(respawnRate);
-        startLevel?.Invoke();
+
     }
     private void SetupLevelData()
     {
@@ -278,7 +282,7 @@ public class GameManager : MonoBehaviour
             if(levelDatas[i].levelNumber == levelNumber)
             {
                 currentLevelData = levelDatas[i];
-                levelChanged?.Invoke();
+                pointsChanged?.Invoke();
             }
         }
 
@@ -291,7 +295,11 @@ public class GameManager : MonoBehaviour
     {
         nextRespawn = Time.time + delay;
     }
-
+    IEnumerator StartGameDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StartGame();
+    }
 
 }
 

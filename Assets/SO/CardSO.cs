@@ -8,6 +8,7 @@ public class CardSO : ScriptableObject
     public string cardID = "DefaultCardID";
     public string description = "Insert Description here";
     public GameObject prefab;
+    public Sprite sprite;
 }
 
 

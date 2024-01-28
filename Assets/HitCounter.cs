@@ -21,6 +21,11 @@ public class HitCounter : MonoBehaviour
 
     public void UpdateUI()
     {
+        if(tmp == null)
+        {
+            tmp = GetComponent<TextMeshProUGUI>();
+        }
+        tmp.color = GameManager.Instance.currentLevelData.colorSchemeSO.colorB;
         tmp.text = defaultText + GameManager.Instance.killCount;
     }
 

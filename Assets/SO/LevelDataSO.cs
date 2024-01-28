@@ -9,10 +9,9 @@ public class LevelDataSO : ScriptableObject
     public List<CardSO> availableCardSOs;
     public int startingCardsAmount = 3;
     public bool randomiseCardOrder = false;
-    public int totalKills = 0;
-    public int reachHighMultiplier = 0;
+    public int points = 1000;
     public float levelTimeLimit = 30f;
     public float respawnRate = 0.5f;
     public float lifeSpan = 3f;
-
+    public ColorSchemeSO colorSchemeSO;
 }
