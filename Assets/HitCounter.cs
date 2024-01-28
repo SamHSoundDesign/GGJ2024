@@ -10,6 +10,7 @@ public class HitCounter : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.otterKilled += UpdateUI;
+        GameManager.Instance.startLevel += UpdateUI;
     }
 
     private void Start()
@@ -22,4 +23,5 @@ public class HitCounter : MonoBehaviour
     {
         tmp.text = defaultText + GameManager.Instance.killCount;
     }
+
 }

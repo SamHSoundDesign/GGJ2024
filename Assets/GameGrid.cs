@@ -29,6 +29,7 @@ public class GameGrid : MonoBehaviour
     }
     private void Start()
     {
+        GameManager.Instance.levelComplete += LevelEnd;
         if(generateGridSystemically)
         {
             SpawnGrid(rows, cols, resolution);
@@ -74,9 +75,19 @@ public class GameGrid : MonoBehaviour
             }
         }
     }
-    public void DestroyGrid()
+    public void LevelEnd()
     {
-
+        DestroyGrid();
+    }
+    private void DestroyGrid()
+    {
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+            {
+                inactiveGridPoints[col, row].DeactivateLevelEnd();
+            }
+        }
     }
 
    public GridPoint GetRandomGridPoint()

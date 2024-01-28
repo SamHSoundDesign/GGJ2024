@@ -75,9 +75,19 @@ public class GameManager : MonoBehaviour
 
         StartGame();
     }
+
+    public void ContinueToNextLevel()
+    {
+        //SetupLevelData();
+        deactivateLevelComplete?.Invoke();
+        //SetNextSpawnTime(respawnRate);
+        StartGame();
+        startLevel?.Invoke();
+
+    }
     private void OnLevelComplete()
     {
-        gamestate = Gamestate.Paused;
+        gamestate = Gamestate.LevelComplete;
 
         if(levelWinSFX != null)
         {
@@ -88,7 +98,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("No level Win SFX on gameManager dummy");
         }    
     }
-
     public void OtterHit()
     {
         ui_HitSFX.PlayAudioClip(uiAudioSource);
@@ -119,7 +128,6 @@ public class GameManager : MonoBehaviour
     }
     private bool HasWon()
     {
-
         bool hasWon = false;
         bool killsRequired = currentLevelData.totalKills != 0;
         bool highMultiplierRequired = currentLevelData.reachHighMultiplier != 0;
@@ -218,13 +226,13 @@ public class GameManager : MonoBehaviour
         {
             case Gamestate.Running:
 
-                if(Time.time > levelEndTime)
+                if (Time.time > levelEndTime)
                 {
                     // FAILED
                     levelFailed?.Invoke();
                 }
 
-                if(HasWon())
+                if (HasWon())
                 {
                     levelComplete?.Invoke();
                 }
@@ -233,14 +241,14 @@ public class GameManager : MonoBehaviour
                 {
                     GridPoint gridPoint = GameGrid.Instance.GetRandomGridPoint();
 
-                    if(gridPoint != null)
+                    if (gridPoint != null)
                     {
                         if (gridPoint.isActive == false && gridPoint.isCoolingDown == false)
                         {
                             gridPoint.Activate(targetPrefab, lifeSpan);
                         }
                     }
-                        
+
                     SetNextSpawnTime(respawnRate);
                 }
 
@@ -249,6 +257,8 @@ public class GameManager : MonoBehaviour
             case Gamestate.Paused:
                 break;
             case Gamestate.Menu:
+                break;
+            case Gamestate.LevelComplete:
                 break;
         }
     }
@@ -282,22 +292,15 @@ public class GameManager : MonoBehaviour
         nextRespawn = Time.time + delay;
     }
 
-    public void ContinueToNextLevel()
-    {
-        SetupLevelData();
-        deactivateLevelComplete?.Invoke();
-        SetNextSpawnTime(respawnRate);
 
-        startLevel?.Invoke();
-
-    }
 }
 
 public enum Gamestate
 {
     Running,
     Paused,
-    Menu
+    Menu,
+    LevelComplete,
 }
 
 public enum GameEffect

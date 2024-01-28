@@ -67,4 +67,11 @@ public class GridPoint : MonoBehaviour
         GameManager.Instance.OtterKilled();
         Deactivate();
     }
+
+    public void DeactivateLevelEnd()
+    {
+        DestroyTarget();
+        isActive = false;
+        isCoolingDown = false;
+    }
 }
