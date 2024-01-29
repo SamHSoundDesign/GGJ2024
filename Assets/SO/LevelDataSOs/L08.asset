@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e794ecc672fbcd4bb36b23afc435c46, type: 3}
   m_Name: L08
   m_EditorClassIdentifier: 
-  levelNumber: 3
+  levelNumber: 8
   availableCardSOs:
   - {fileID: 11400000, guid: 33a96eccbb40b2b45a3c9fee4cc4ddfb, type: 2}
   - {fileID: 11400000, guid: 230653f05302cb945826199176b8fedc, type: 2}
