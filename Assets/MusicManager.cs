@@ -11,6 +11,8 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip countDownClip;
     [SerializeField] private AudioClip gameLoopClip1;
     [SerializeField] private AudioClip gameLoopClip2;
+
+    private float defaultVol;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,9 @@ public class MusicManager : MonoBehaviour
         GameManager.Instance.levelComplete += LevelComplete;
         GameManager.Instance.levelFailed += LevelFailed;
 
+        defaultVol = musicSource.volume;
         musicSource.clip = musicMainMenu;
+        musicSource.volume = defaultVol + GameManager.Instance.volumeModifier;
         musicSource.Play();
     }
 
@@ -36,6 +40,7 @@ public class MusicManager : MonoBehaviour
             musicSource.Stop();
         }
 
+        countdownSource.volume = defaultVol + GameManager.Instance.volumeModifier;
         countdownSource.clip = countDownClip;
         countdownSource.Play();
     }
@@ -47,8 +52,8 @@ public class MusicManager : MonoBehaviour
         {
             musicSource.Stop();
         }
-            
 
+        musicSource.volume = defaultVol + GameManager.Instance.volumeModifier;
         musicSource.clip = GameManager.Instance.currentLevelData.levelMusic;
         musicSource.Play();
     }

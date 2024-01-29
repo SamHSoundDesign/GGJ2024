@@ -9,12 +9,13 @@ public class GoalUI : MonoBehaviour
     void Start()
     {
         GameManager.Instance.startLevel += UpdateUI;
+        GameManager.Instance.pointsChanged += UpdateUI;
         defaultText = tmp.text;
     }
 
     public void UpdateUI()
     {
         tmp.color = GameManager.Instance.currentLevelData.colorSchemeSO.colorB;
-        tmp.text = defaultText + GameManager.Instance.currentLevelData.points;
+        tmp.text = defaultText + (GameManager.Instance.currentLevelData.points - GameManager.Instance.points);
     }
 }

@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPrefab: {fileID: 4027789761160361011, guid: ff382d8d9e3e64e4dbc93fdb3528de1a, type: 3}
+  volumeModifier: -0.5
   levelNumber: 0
   levelDatas:
   - {fileID: 11400000, guid: aaebc6855d63d0c4394ff06b3b8465f4, type: 2}
@@ -332,14 +333,17 @@ MonoBehaviour:
   multiplierCount: 0
   uiAudioSource: {fileID: 2490142542714778478}
   otterAudioSource: {fileID: 6442514192092985069}
+  countDownClockAudioSource: {fileID: 2748740263871975565}
   ui_HitSFX: {fileID: 11400000, guid: 9e66df4891367644fa9169623ed9394d, type: 2}
   otterHitSFX: {fileID: 11400000, guid: 67bf8226af3c72b4db3ee9e9ee6b454a, type: 2}
   otterKilledSFX: {fileID: 0}
   otterMissedClickSFX: {fileID: 0}
   levelWinSFX: {fileID: 11400000, guid: be6999908be243341b07aa5f5bf4d49b, type: 2}
-  levelLossSFX: {fileID: 0}
+  levelLossSFX: {fileID: 11400000, guid: e1cd7922eb13d6f42b33b72d3cf838a6, type: 2}
   cardPlayedSFX: {fileID: 11400000, guid: cb950e750363756408938266e09fdbeb, type: 2}
   cardExpiredSFX: {fileID: 11400000, guid: 468c8bcf0246fba4f9879aef858ae21a, type: 2}
+  fiveSecondTimerSFX: {fileID: 11400000, guid: f20a26de54faa044a8b1ec72e5399998, type: 2}
+  points: 0
   getCardMultiplierRequierd: 3
 --- !u!114 &2490142542714778451
 MonoBehaviour:

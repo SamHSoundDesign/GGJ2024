@@ -16,7 +16,7 @@ public class AudioAsset : ScriptableObject
     {
         AudioClip audioClip = GetAudioClip();
 
-        audioSource.volume = vol;
+        audioSource.volume = vol + GameManager.Instance.volumeModifier;
         audioSource.pitch = pitch;
 
         if (isOneShot)

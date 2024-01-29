@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public event Action pointsChanged;
     public event Action levelFailed;
 
+    public float volumeModifier = -0.3f;
+
     public int levelNumber = 0;
     public List<LevelDataSO> levelDatas;
     public LevelDataSO currentLevelData;
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource uiAudioSource;
     
     [SerializeField] private AudioSource otterAudioSource;
+    [SerializeField] private AudioSource countDownClockAudioSource;
+
 
     [SerializeField] private AudioAsset ui_HitSFX;
     [SerializeField] private AudioAsset otterHitSFX;
@@ -61,7 +65,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioAsset levelLossSFX;
     [SerializeField] private AudioAsset cardPlayedSFX;
     [SerializeField] private AudioAsset cardExpiredSFX;
-    private int points = 0;
+    [SerializeField] private AudioAsset fiveSecondTimerSFX;
+    public int points = 0;
 
     [SerializeField] private int getCardMultiplierRequierd = 3;
 
@@ -84,14 +89,18 @@ public class GameManager : MonoBehaviour
 
         CardManager.Instance.cardPlayed += PlayCardPlayedSFX;
         ActiveCard.Instance.cardExpired += CardExpiredSFX;
+        CountdownClock.Instance.fiveSecondCountDown += FiveSecondTimer;
 
     }
 
+    public void FiveSecondTimer()
+    {
+        fiveSecondTimerSFX.PlayAudioClip(countDownClockAudioSource);
+    }
     private void CardExpiredSFX()
     {
         cardExpiredSFX.PlayAudioClip(uiAudioSource);
     }
-
     public void ContinueToNextLevel()
     {
         //SetupLevelData();
@@ -203,7 +212,6 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
-
     private void PlayCardPlayedSFX()
     {
         cardPlayedSFX.PlayAudioClip(uiAudioSource);
@@ -259,6 +267,8 @@ public class GameManager : MonoBehaviour
                 {
                     // FAILED
                     levelFailed?.Invoke();
+                    levelLossSFX.PlayAudioClip(uiAudioSource);
+                    gamestate = Gamestate.LevelComplete;
                 }
 
                 if (HasWon())

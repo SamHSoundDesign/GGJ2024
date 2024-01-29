@@ -15,8 +15,8 @@ MonoBehaviour:
   levelNumber: 1
   startingCardsAmount: 2
   randomiseCardOrder: 0
-  points: 3000
-  levelTimeLimit: 30
+  points: 1000
+  levelTimeLimit: 15
   respawnRate: 0.5
   lifeSpan: 4
   colorSchemeSO: {fileID: 11400000, guid: 4437d7f09da4835428583f030989fbbc, type: 2}

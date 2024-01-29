@@ -12,6 +12,7 @@ public class GameModeUI : MonoBehaviour
     {
         GameManager.Instance.startLevel += Activate;
         GameManager.Instance.levelComplete += Deactivate;
+        GameManager.Instance.levelFailed += Deactivate;
     }
     public void Deactivate()
     {
