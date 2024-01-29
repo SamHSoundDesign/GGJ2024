@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] private AudioAsset ui_HitSFX;
+    [SerializeField] private AudioAsset ui_ButtonSFX;
     [SerializeField] private AudioAsset otterHitSFX;
     [SerializeField] private AudioAsset otterKilledSFX;
     [SerializeField] private AudioAsset otterMissedClickSFX;
@@ -128,6 +129,11 @@ public class GameManager : MonoBehaviour
         gamestate = Gamestate.LevelComplete;
         levelWinSFX.PlayAudioClip(uiAudioSource);
 
+    }
+
+    public void UIButtonSFX()
+    {
+        ui_ButtonSFX.PlayAudioClip(uiAudioSource);
     }
     public void OtterHit()
     {
