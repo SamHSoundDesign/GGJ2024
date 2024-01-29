@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,9 @@ public class ActiveCard : MonoBehaviour
     public TextMeshProUGUI title_tmp;
     public TextMeshProUGUI description_tmp;
     public Card activeCard;
+    public event Action cardExpired;
+
+    private bool setupComplete = false;
 
 
     private void Awake()
@@ -42,8 +46,12 @@ public class ActiveCard : MonoBehaviour
 
     public void DeactivateActiveCard()
     {
-
+        if (setupComplete)
+        {
+            cardExpired?.Invoke();
+        }
         gameObject.SetActive(false);
+        setupComplete = true;
 
     }
 

@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioAsset otterMissedClickSFX;
     [SerializeField] private AudioAsset levelWinSFX;
     [SerializeField] private AudioAsset levelLossSFX;
+    [SerializeField] private AudioAsset cardPlayedSFX;
+    [SerializeField] private AudioAsset cardExpiredSFX;
     private int points = 0;
 
     [SerializeField] private int getCardMultiplierRequierd = 3;
@@ -79,6 +81,15 @@ public class GameManager : MonoBehaviour
         gamePaused += PauseGame;
         gameUnPaused += UnPauseGame;
         levelComplete += OnLevelComplete;
+
+        CardManager.Instance.cardPlayed += PlayCardPlayedSFX;
+        ActiveCard.Instance.cardExpired += CardExpiredSFX;
+
+    }
+
+    private void CardExpiredSFX()
+    {
+        cardExpiredSFX.PlayAudioClip(uiAudioSource);
     }
 
     public void ContinueToNextLevel()
@@ -201,6 +212,11 @@ public class GameManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void PlayCardPlayedSFX()
+    {
+        cardPlayedSFX.PlayAudioClip(uiAudioSource);
     }
     private void Update()
     {

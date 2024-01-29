@@ -9,6 +9,7 @@ public class CardManager : MonoBehaviour
     public List<CardSO> cardsInDeck;
     public List<CardSlot> cardSlots = new List<CardSlot>();
     public bool durationCardAcitve;
+    public event Action cardPlayed;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class CardManager : MonoBehaviour
 
         GameManager.Instance.InitialiseCardEffects();
         ActiveCard.Instance.DeactivateActiveCard();
+
     }
 
     public void Start()
@@ -70,7 +72,9 @@ public class CardManager : MonoBehaviour
             Card playedCard = playedCarGOd.GetComponent<Card>();
             playedCard.ActivateCard();
             ActiveCard.Instance.activeCard = playedCard;
+            cardPlayed?.Invoke();
         }
+
 
     }
 }

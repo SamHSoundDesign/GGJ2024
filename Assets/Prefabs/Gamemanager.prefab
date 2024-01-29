@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: 2490142542714778449}
   - component: {fileID: 2490142542714778450}
   - component: {fileID: 2490142542714778451}
-  - component: {fileID: 2490142542714778448}
   - component: {fileID: 2490142542714778479}
   - component: {fileID: 2490142542714778478}
   - component: {fileID: 2768752749742473677}
@@ -315,6 +314,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aaebc6855d63d0c4394ff06b3b8465f4, type: 2}
   - {fileID: 11400000, guid: e6b8b26d70660fc47a6a8593ba22bd11, type: 2}
   - {fileID: 11400000, guid: 8691d1c27c4e26b44bfd88af850e0994, type: 2}
+  - {fileID: 11400000, guid: 0254e43dfebb42a49bd6e2abbb628ee6, type: 2}
+  - {fileID: 11400000, guid: 624b195c26cfdbf4280882f2df5ed071, type: 2}
+  - {fileID: 11400000, guid: 59eb70ca89786b640889f991c4a04311, type: 2}
+  - {fileID: 11400000, guid: 5c52043ca7962284ca4982327b187b1e, type: 2}
+  - {fileID: 11400000, guid: f97407b97d1cf724d84c3f02675cdc5a, type: 2}
   currentLevelData: {fileID: 0}
   levelStartTime: 0
   levelEndTime: 0
@@ -332,10 +336,9 @@ MonoBehaviour:
   otterHitSFX: {fileID: 11400000, guid: 67bf8226af3c72b4db3ee9e9ee6b454a, type: 2}
   otterKilledSFX: {fileID: 0}
   otterMissedClickSFX: {fileID: 0}
-  levelWinSFX: {fileID: 0}
+  levelWinSFX: {fileID: 11400000, guid: be6999908be243341b07aa5f5bf4d49b, type: 2}
   levelLossSFX: {fileID: 0}
-  hitPointValue: 50
-  killPointValue: 100
+  getCardMultiplierRequierd: 3
 --- !u!114 &2490142542714778451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,24 +358,6 @@ MonoBehaviour:
   gameGridPlaceholder: {fileID: 0}
   gridPointPrefab: {fileID: 4744359556857709864, guid: 42c54b29fe418ab4eb4a1cf29754da03, type: 3}
   generateGridSystemically: 0
---- !u!114 &2490142542714778448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2490142542714778452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66573afdba003ca488c181cb8079fbb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardParent: {fileID: 0}
-  cardSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  durationCardAcitve: 0
 --- !u!114 &2490142542714778479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,9 +532,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.603
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
