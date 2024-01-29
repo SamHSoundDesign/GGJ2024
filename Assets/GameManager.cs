@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource otterAudioSource;
     [SerializeField] private AudioSource countDownClockAudioSource;
 
-
+    [SerializeField] private AudioAsset ui_HoverSFX;
     [SerializeField] private AudioAsset ui_HitSFX;
     [SerializeField] private AudioAsset ui_ButtonSFX;
     [SerializeField] private AudioAsset otterHitSFX;
@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioAsset cardPlayedSFX;
     [SerializeField] private AudioAsset cardExpiredSFX;
     [SerializeField] private AudioAsset fiveSecondTimerSFX;
+    
 
     [SerializeField] private GameObject ingameUI;
     public int points = 0;
@@ -174,6 +175,11 @@ public class GameManager : MonoBehaviour
     public void UIButtonSFX()
     {
         ui_ButtonSFX.PlayAudioClip(uiAudioSource);
+    }
+
+    public void UIHoverSFX()
+    {
+        ui_HoverSFX.PlayAudioClip(uiAudioSource);
     }
     public void OtterHit()
     {

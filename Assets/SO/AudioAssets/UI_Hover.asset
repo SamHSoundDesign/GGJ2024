@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f59b483056e7224281a4deb243f6873, type: 3}
-  m_Name: UI_ButtonClick
+  m_Name: UI_Hover
   m_EditorClassIdentifier: 
-  isOneShot: 1
-  vol: 0.75
+  isOneShot: 0
+  vol: 1
   pitch: 1
   audioClips:
-  - {fileID: 8300000, guid: 2f4a7faea26a9224789fcd52a2ca6c53, type: 3}
-  - {fileID: 8300000, guid: 0f1ebb63e609fa94dae3873118a49e54, type: 3}
-  - {fileID: 8300000, guid: b62155b6b30b008439628614f31ecbbf, type: 3}
-  - {fileID: 8300000, guid: af412d8db987c31449ee5da5a6c5fdc2, type: 3}
+  - {fileID: 8300000, guid: 25b5dec825c04904592e46bc1a8450c8, type: 3}
+  - {fileID: 8300000, guid: b7fade06c09644b4fb051ebde91b4cf0, type: 3}

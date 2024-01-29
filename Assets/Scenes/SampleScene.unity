@@ -453,7 +453,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
   m_PrefabInstance: {fileID: 2490142542755256847}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2490142542755256848}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd1819b92b363a447b58fe95aa84c05d, type: 3}
@@ -936,6 +936,7 @@ GameObject:
   - component: {fileID: 332676342}
   - component: {fileID: 332676341}
   - component: {fileID: 332676340}
+  - component: {fileID: 332676343}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -1044,6 +1045,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2490142542755256848}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &332676341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1095,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332676338}
   m_CullTransparentMesh: 1
+--- !u!114 &332676343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332676338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIButtonSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &378987218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1186,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378987218}
   m_CullTransparentMesh: 1
+--- !u!82 &408535038 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5440211559113285249, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+  m_PrefabInstance: {fileID: 2490142542755256847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &419982048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,6 +1930,7 @@ GameObject:
   - component: {fileID: 526164908}
   - component: {fileID: 526164907}
   - component: {fileID: 526164906}
+  - component: {fileID: 526164909}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -1975,6 +2039,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2490142542755256848}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &526164907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2013,6 +2089,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526164904}
   m_CullTransparentMesh: 1
+--- !u!114 &526164909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526164904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIButtonSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &559484425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,6 +2982,8 @@ GameObject:
   - component: {fileID: 868825771}
   - component: {fileID: 868825770}
   - component: {fileID: 868825769}
+  - component: {fileID: 868825773}
+  - component: {fileID: 868825772}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -2933,18 +3056,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 559484425}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1898019618}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -2968,6 +3079,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 559484425}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &868825770
 MonoBehaviour:
@@ -3007,6 +3130,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868825767}
   m_CullTransparentMesh: 1
+--- !u!114 &868825772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868825767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &868825773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868825767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &881296668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,6 +3208,7 @@ GameObject:
   - component: {fileID: 881296672}
   - component: {fileID: 881296671}
   - component: {fileID: 881296670}
+  - component: {fileID: 881296673}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -3165,6 +3355,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881296668}
   m_CullTransparentMesh: 1
+--- !u!114 &881296673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881296668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &929536007
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,6 +3625,7 @@ GameObject:
   - component: {fileID: 992451751}
   - component: {fileID: 992451750}
   - component: {fileID: 992451749}
+  - component: {fileID: 992451752}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -3536,6 +3772,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992451747}
   m_CullTransparentMesh: 1
+--- !u!114 &992451752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992451747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1034006722
 GameObject:
   m_ObjectHideFlags: 0
@@ -6221,7 +6502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1898019619
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6945,6 +7226,7 @@ GameObject:
   - component: {fileID: 2049259269}
   - component: {fileID: 2049259268}
   - component: {fileID: 2049259267}
+  - component: {fileID: 2049259270}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -7103,6 +7385,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049259265}
   m_CullTransparentMesh: 1
+--- !u!114 &2049259270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049259265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2051750786
 GameObject:
   m_ObjectHideFlags: 0
@@ -7359,6 +7686,7 @@ GameObject:
   - component: {fileID: 2111295733}
   - component: {fileID: 2111295732}
   - component: {fileID: 2111295731}
+  - component: {fileID: 2111295734}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -7505,6 +7833,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111295729}
   m_CullTransparentMesh: 1
+--- !u!114 &2111295734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111295729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 127527261}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UIHoverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &2432967437176379181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7674,6 +8047,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 37b1819131e001742bb8b173db8ca381, type: 2}
     - target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+      propertyPath: uiAudioSource
+      value: 
+      objectReference: {fileID: 408535038}
+    - target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
       propertyPath: volumeModifier
       value: -0.3
       objectReference: {fileID: 0}
@@ -7685,8 +8062,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gamemanager
       objectReference: {fileID: 0}
+    - target: {fileID: 5440211559113285249, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+--- !u!1 &2490142542755256848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2490142542714778452, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+  m_PrefabInstance: {fileID: 2490142542755256847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4224960932277381037
 PrefabInstance:
   m_ObjectHideFlags: 0
