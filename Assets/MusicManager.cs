@@ -6,6 +6,7 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource countdownSource;
     [SerializeField] private AudioClip musicMainMenu;
     [SerializeField] private AudioClip countDownClip;
     [SerializeField] private AudioClip gameLoopClip1;
@@ -35,8 +36,8 @@ public class MusicManager : MonoBehaviour
             musicSource.Stop();
         }
 
-        musicSource.clip = countDownClip;
-        musicSource.Play();
+        countdownSource.clip = countDownClip;
+        countdownSource.Play();
     }
 
 

@@ -15,4 +15,5 @@ MonoBehaviour:
   isOneShot: 1
   vol: 1
   pitch: 1
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 8cb9a6052303d064c8248352abae7239, type: 3}
