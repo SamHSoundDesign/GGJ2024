@@ -11,6 +11,10 @@ public class CardManager : MonoBehaviour
     public bool durationCardAcitve;
     public event Action cardPlayed;
 
+    private bool carDealTimerStarted = false;
+    private float cardRefreshRate = 10;
+    private float cardRefreshTime;
+
     private void Awake()
     {
         if(Instance == null)
@@ -22,6 +26,47 @@ public class CardManager : MonoBehaviour
             Destroy(this);
         }
     }
+    
+    public void ResetManager()
+    {
+        carDealTimerStarted = false;
+    }
+    private void Update()
+    {
+        if(GameManager.Instance.gamestate == Gamestate.Running)
+        {
+            if (carDealTimerStarted == false)
+            {
+                cardRefreshTime = Time.time + cardRefreshRate;
+                carDealTimerStarted = true;
+                
+
+            }
+            else
+            {
+                ReplenishACard();
+            }
+            
+
+        }
+    }
+
+    private void ReplenishACard()
+    {
+        if (Time.time > cardRefreshTime)
+        {
+            for (int i = 0; i < cardSlots.Count; i++)
+            {
+                if (cardSlots[i].hasCard == false)
+                {
+                    cardSlots[i].SetHasCard(true);
+                    cardRefreshTime = Time.time + cardRefreshRate;
+                    break;
+                }
+            }
+        }
+    }
+
     public void LockAllNonUsableCards()
     {
         durationCardAcitve = true;
@@ -30,6 +75,7 @@ public class CardManager : MonoBehaviour
     public void UnLockAllNonUsableCards()
     {
         durationCardAcitve = false;
+        cardRefreshTime = Time.time + cardRefreshRate;
 
         GameManager.Instance.InitialiseCardEffects();
         ActiveCard.Instance.DeactivateActiveCard();
@@ -38,16 +84,19 @@ public class CardManager : MonoBehaviour
 
     public void Start()
     {
-        GameManager.Instance.pointsChanged += SetupLevel;
+        GameManager.Instance.pointsChanged += SetupLevel;   
         GameManager.Instance.startLevel += StartLevel;
+
+        //gameObject.SetActive(false);
 
     }
     public void SetupLevel()
     {
-
+        ResetManager();
     }
     private void StartLevel()
     {
+        ResetManager();
         for (int i = 0; i < GameManager.Instance.currentLevelData.startingCardsAmount; i++)
         {
             cardSlots[i].SetHasCard(true);

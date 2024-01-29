@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject targetPrefab;
-    private Gamestate gamestate = Gamestate.Menu;
+    public Gamestate gamestate = Gamestate.Menu;
     private GameEffect gameEffect = GameEffect.None;
 
     public event Action startLevel;
@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioAsset cardPlayedSFX;
     [SerializeField] private AudioAsset cardExpiredSFX;
     [SerializeField] private AudioAsset fiveSecondTimerSFX;
+
+    [SerializeField] private GameObject ingameUI;
     public int points = 0;
 
     [SerializeField] private int getCardMultiplierRequierd = 3;
@@ -105,11 +107,17 @@ public class GameManager : MonoBehaviour
     {
         //SetupLevelData();
         deactivateLevelComplete?.Invoke();
-        countdownStart?.Invoke();
         //SetNextSpawnTime(respawnRate);
+        StartGameWithDelay();
+        ingameUI.SetActive(true);
+        countdownStart?.Invoke();
+
+
+    }
+
+    public void StartGameWithDelay()
+    {
         StartCoroutine(StartGameDelay(gameIntroSoundLenth));
-
-
     }
     public void OnPlayGame()
     {
