@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     public int killCount = 0;
     public int multiplierCount = 1;
 
+    private bool b_timerExpired;
+
     // AudioRefs
     [Header("Audio BISHHHHH")]
     [SerializeField] private AudioSource uiAudioSource;
@@ -89,8 +91,10 @@ public class GameManager : MonoBehaviour
         gamePaused += PauseGame;
         gameUnPaused += UnPauseGame;
         levelComplete += OnLevelComplete;
+        //levelComplete -= CardExpiredSFX;
         levelComplete += StopCountdownSFX;
         levelFailed += StopCountdownSFX;
+        //levelFailed -= CardExpiredSFX;
 
         CardManager.Instance.cardPlayed += PlayCardPlayedSFX;
         ActiveCard.Instance.cardExpired += CardExpiredSFX;
@@ -100,15 +104,27 @@ public class GameManager : MonoBehaviour
 
     public void StopCountdownSFX()
     {
+        
         countDownClockAudioSource.Stop();
     }
     public void FiveSecondTimer()
     {
         fiveSecondTimerSFX.PlayAudioClip(countDownClockAudioSource);
     }
+
+    private void PlayCardPlayedSFX()
+    {
+        cardPlayedSFX.PlayAudioClip(uiAudioSource);
+    }
+
     private void CardExpiredSFX()
     {
-        cardExpiredSFX.PlayAudioClip(uiAudioSource);
+        if (!b_timerExpired)
+        { 
+            cardExpiredSFX.PlayAudioClip(uiAudioSource); 
+        }
+        
+        
     }
     public void ContinueToNextLevel()
     {
@@ -144,9 +160,9 @@ public class GameManager : MonoBehaviour
     private void OnLevelComplete()
     {
         gamestate = Gamestate.LevelComplete;
-        
+        b_timerExpired = true;
         levelWinSFX.PlayAudioClip(uiAudioSource);
-
+        
     }
 
     public void UIButtonSFX()
@@ -244,10 +260,7 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
-    private void PlayCardPlayedSFX()
-    {
-        cardPlayedSFX.PlayAudioClip(uiAudioSource);
-    }
+    
     private void Update()
     {
 
@@ -297,14 +310,17 @@ public class GameManager : MonoBehaviour
 
                 if (Time.time > levelEndTime)
                 {
+                    b_timerExpired = true;
                     // FAILED
                     levelFailed?.Invoke();
                     levelLossSFX.PlayAudioClip(uiAudioSource);
+                    ActiveCard.Instance.cardExpired -= CardExpiredSFX;
                     gamestate = Gamestate.LevelComplete;
                 }
 
                 if (HasWon())
                 {
+                    b_timerExpired = true;
                     levelComplete?.Invoke();
                 }
 
@@ -339,6 +355,8 @@ public class GameManager : MonoBehaviour
         SetupLevelData();
         SetNextSpawnTime(respawnRate);
         startLevel?.Invoke();
+        ActiveCard.Instance.cardExpired += CardExpiredSFX;
+        b_timerExpired = false;
     }
     private void SetupLevelData()
     {
