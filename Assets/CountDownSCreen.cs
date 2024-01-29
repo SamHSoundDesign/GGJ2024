@@ -10,10 +10,15 @@ public class CountDownSCreen : MonoBehaviour
     private int counter = 5;
     private void OnEnable()
     {
-        defaultFontSize = tmp.fontSize;
+        
         counter = 5;
         tmp.text = counter.ToString();
         StartCoroutine(OneSec(1));
+    }
+
+    private void Start()
+    {
+        defaultFontSize = tmp.fontSize;
     }
 
     public IEnumerator OneSec(float delay)

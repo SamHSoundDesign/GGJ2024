@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
         gamePaused += PauseGame;
         gameUnPaused += UnPauseGame;
         levelComplete += OnLevelComplete;
+        levelComplete += StopCountdownSFX;
+        levelFailed += StopCountdownSFX;
 
         CardManager.Instance.cardPlayed += PlayCardPlayedSFX;
         ActiveCard.Instance.cardExpired += CardExpiredSFX;
@@ -96,6 +98,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void StopCountdownSFX()
+    {
+        countDownClockAudioSource.Stop();
+    }
     public void FiveSecondTimer()
     {
         fiveSecondTimerSFX.PlayAudioClip(countDownClockAudioSource);
@@ -114,6 +120,19 @@ public class GameManager : MonoBehaviour
         countdownStart?.Invoke();
     }
 
+    public void RestartLevel()
+    {
+        //SetupLevelData();
+        deactivateLevelComplete?.Invoke();
+        //SetNextSpawnTime(respawnRate);
+        StartGameWithDelay();
+        levelNumber--;
+        ingameUI.SetActive(true);
+        countdownStart?.Invoke();
+
+
+    }
+
     public void StartGameWithDelay()
     {
         StartCoroutine(StartGameDelay(gameIntroSoundLenth));
@@ -125,6 +144,7 @@ public class GameManager : MonoBehaviour
     private void OnLevelComplete()
     {
         gamestate = Gamestate.LevelComplete;
+        
         levelWinSFX.PlayAudioClip(uiAudioSource);
 
     }
