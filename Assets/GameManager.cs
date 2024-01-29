@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioAsset levelWinSFX;
     [SerializeField] private AudioAsset levelLossSFX;
     private int points = 0;
-    [SerializeField] private int hitPointValue = 50;
-    [SerializeField] private int killPointValue = 100;
+
+    [SerializeField] private int getCardMultiplierRequierd = 3;
 
     private void Awake()
     {
@@ -103,11 +103,10 @@ public class GameManager : MonoBehaviour
     }
     public void OtterHit()
     {
+        // As it is one hit kills, this is just for audio
+
         ui_HitSFX.PlayAudioClip(uiAudioSource);
         otterHitSFX.PlayAudioClip(otterAudioSource);
-
-        UpdatePoints(1);
-
     }
     public void OtterKilled()
     {
@@ -122,7 +121,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("No otterKilled SFX on gamemanager");
         }
 
-        UpdatePoints(2);
+        UpdatePoints();
 
         if(HasWon())
         {
@@ -131,17 +130,9 @@ public class GameManager : MonoBehaviour
 
         otterKilled?.Invoke();
     }
-    private void UpdatePoints(int hitCount)
+    private void UpdatePoints()
     {
-        if(hitCount == 1)
-        {
-            points += hitPointValue * multiplierCount;
-        }
-        else if(hitCount == 2)
-        {
-            points += killPointValue * multiplierCount;
-        }
-
+        points += (100 * multiplierCount);
         pointsChanged?.Invoke();
     }
     private bool HasWon()
@@ -180,7 +171,6 @@ public class GameManager : MonoBehaviour
         multiplierCount = 1;
 
     }
-
     public void InitialiseCardEffects()
     {
         respawnRate = defaultSpeed;
