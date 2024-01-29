@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f59b483056e7224281a4deb243f6873, type: 3}
-  m_Name: CardExpired
+  m_Name: LevelLoss
   m_EditorClassIdentifier: 
   isOneShot: 1
   vol: 1
   pitch: 1
   audioClips:
-  - {fileID: 8300000, guid: 0ecab12cbad05cb4083ce87ff34ee569, type: 3}
+  - {fileID: 8300000, guid: dcecbce0e60fd2040af58abfdc08cde3, type: 3}
