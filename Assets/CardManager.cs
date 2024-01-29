@@ -6,13 +6,8 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     public static CardManager Instance;
-
-    private List<CardSO> cardsInDeck = new List<CardSO>();
-    private List<Card> cardsInHand = new List<Card>();
-
-    public Transform cardParent;
-
-    public List<Transform> cardSlots = new List<Transform>();
+    public List<CardSO> cardsInDeck;
+    public List<CardSlot> cardSlots = new List<CardSlot>();
     public bool durationCardAcitve;
 
     private void Awake()
@@ -30,30 +25,13 @@ public class CardManager : MonoBehaviour
     {
         durationCardAcitve = true;
 
-        for (int i = 0; i < cardSlots.Count; i++)
-        {
-            Card card = cardSlots[i].gameObject.GetComponent<Card>();
-
-            if(card != null)
-            {
-                card.Lock();
-            }
-        }
-
     }
     public void UnLockAllNonUsableCards()
     {
         durationCardAcitve = false;
 
-        for (int i = 0; i < cardSlots.Count; i++)
-        {
-            Card card = cardSlots[i].gameObject.GetComponent<Card>();
-
-            if (card != null)
-            {
-                card.UnLock();
-            }
-        }
+        GameManager.Instance.InitialiseCardEffects();
+        ActiveCard.Instance.DeactivateActiveCard();
     }
 
     public void Start()
@@ -64,79 +42,35 @@ public class CardManager : MonoBehaviour
     }
     public void SetupLevel()
     {
-        cardsInDeck = GameManager.Instance.currentLevelData.availableCardSOs;
+
     }
     private void StartLevel()
     {
-        foreach (Card card in cardsInHand)
+        for (int i = 0; i < GameManager.Instance.currentLevelData.startingCardsAmount; i++)
         {
-            card.Destroy();
-        }
-
-        cardsInHand.Clear();
-        cardsInHand = new List<Card>();
-
-        DealStartingCards();
-    }
-
-    private void DealStartingCards()
-    {
-        LevelDataSO levelDataSO = GameManager.Instance.currentLevelData;
-        bool isRandom = levelDataSO.randomiseCardOrder;
-
-        for (int i = 0; i < levelDataSO.startingCardsAmount; i++)
-        {
-            DealNextCard(isRandom, levelDataSO); ;
+            cardSlots[i].SetHasCard(true);
         }
     }
 
-    private void DealNextCard(bool random, LevelDataSO levelDataSO)
+    public void PlayCard(int cardSlot)
     {
-        int index;
-
-        index = UnityEngine.Random.Range(0, levelDataSO.availableCardSOs.Count);
-        Card newCard = SpawnCard(levelDataSO.availableCardSOs[index]);
-
-        if (newCard == null)
+        if(cardSlot < 0 || cardSlot > 3)
         {
-            Debug.Log("New card is null");
             return;
-        }  
+        }
+
+        if(cardSlots[cardSlot].hasCard && durationCardAcitve == false)
+        {
+            cardSlots[cardSlot].SetHasCard(false);
+
+            int random = UnityEngine.Random.Range(0, cardsInDeck.Count);
+            ActiveCard.Instance.SetupActiveCard(cardsInDeck[random]);
+            
+            GameObject playedCarGOd = Instantiate(cardsInDeck[random].prefab, Vector3.zero, Quaternion.identity, transform);
+            Card playedCard = playedCarGOd.GetComponent<Card>();
+            playedCard.ActivateCard();
+            ActiveCard.Instance.activeCard = playedCard;
+        }
 
     }
-
-    public Card SpawnCard(CardSO cardSO)
-    {
-        if(cardsInDeck.Count == 0)
-        {
-            Debug.Log("Not enough cards in the deck. Currently the deck has " + cardsInDeck.Count + " cards in it");
-            return null;
-        }
-
-        if(cardsInHand.Count >= cardSlots.Count)
-        {
-            Debug.Log("Hand is currently full");
-            return null;
-        }
-
-        int slot = cardsInHand.Count;
-        Vector3 worldPos = cardSlots[slot].position;
-        GameObject prefab = cardSO.prefab;
-
-        GameObject go = Instantiate(prefab, worldPos, Quaternion.identity, cardParent);
-        go.GetComponent<CardPrefab>().Setup(cardSO);
-        Card card = go.GetComponent<Card>();
-        cardsInHand.Add(card);
-
-
-        if(durationCardAcitve)
-        {
-            card.Lock();
-        }
-
-
-        return card;
-    }
-
-
 }

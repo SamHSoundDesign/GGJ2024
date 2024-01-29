@@ -9,13 +9,11 @@ public class GameGrid : MonoBehaviour
     public int cols;
     private GridPoint[,] inactiveGridPoints;
     [SerializeField] private GameObject defaultGridParent;
-
     public float resolution;
     public GameObject gameGridPlaceholder;
-
     [SerializeField] private GameObject gridPointPrefab;
-
     [SerializeField] private bool generateGridSystemically = false;
+
     private void Awake()
     {
         if(Instance == null)
@@ -36,7 +34,6 @@ public class GameGrid : MonoBehaviour
         }
         else
         {
-
             rows = defaultGridParent.transform.childCount;
             cols = defaultGridParent.transform.GetChild(0).transform.childCount;
             inactiveGridPoints = new GridPoint[cols, rows];
@@ -89,7 +86,6 @@ public class GameGrid : MonoBehaviour
             }
         }
     }
-
    public GridPoint GetRandomGridPoint()
     {
         int attempt = 0;
@@ -110,17 +106,13 @@ public class GameGrid : MonoBehaviour
 
         return null;
     }
-
     public GridPoint SpawnGridPoint(int col, int row, float resolution)
     {
         GameObject go = Instantiate(gridPointPrefab, GetGridPointWorldPos(col, row, Vector3.zero, resolution), Quaternion.identity, transform);
         return go.GetComponent<GridPoint>();
     }
-
     private Vector3 GetGridPointWorldPos(int row, int col, Vector3 origin, float resolution)
     {
         return origin + new Vector3(col * resolution, row * resolution);
     }
-
-
 }

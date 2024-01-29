@@ -79,12 +79,6 @@ public class GameManager : MonoBehaviour
         gamePaused += PauseGame;
         gameUnPaused += UnPauseGame;
         levelComplete += OnLevelComplete;
-
-
-        
-
-
-        
     }
 
     public void ContinueToNextLevel()
@@ -97,7 +91,6 @@ public class GameManager : MonoBehaviour
 
 
     }
-
     public void OnPlayGame()
     {
 
@@ -187,6 +180,12 @@ public class GameManager : MonoBehaviour
         multiplierCount = 1;
 
     }
+
+    public void InitialiseCardEffects()
+    {
+        respawnRate = defaultSpeed;
+        lifeSpan = defaultLifeSpan;
+    }
     public void DefaultSpeed()
     {
         respawnRate = defaultSpeed;
@@ -237,6 +236,25 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        Debug.Log(respawnRate);
+        if(gamestate == Gamestate.Running)
+        {
+            if(Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                CardManager.Instance.PlayCard(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                CardManager.Instance.PlayCard(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                CardManager.Instance.PlayCard(2);
+            }
+        }
+
         switch (gamestate)
         {
             case Gamestate.Running:
@@ -284,8 +302,6 @@ public class GameManager : MonoBehaviour
         SetNextSpawnTime(respawnRate);
         startLevel?.Invoke();
     }
-
-
     private void SetupLevelData()
     {
         levelNumber++;

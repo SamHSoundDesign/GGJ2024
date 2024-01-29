@@ -35,9 +35,13 @@ public class Card : MonoBehaviour
     {
         CardManager.Instance.UnLockAllNonUsableCards();
 
-
+        ActiveCard.Instance.activeCard = null;
+        
         if (debug)
             Debug.Log(cardID + " Card played. Well done you.");
+        
+        Destroy(gameObject);
+        
     }
 
     private void OnMouseDown()

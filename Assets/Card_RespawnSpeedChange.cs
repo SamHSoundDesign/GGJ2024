@@ -6,6 +6,11 @@ public class Card_RespawnSpeedChange : Card
 {
     public float speedIncreaseAmount = 1.5f;
 
+    private void Start()
+    {
+        ActivateCard();
+    }
+
     public override void ActivateCard()
     {
         float newSpeed = GameManager.Instance.respawnRate * speedIncreaseAmount;

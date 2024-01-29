@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2432967435804544137}
   - component: {fileID: 2432967435804544142}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Desc_tmp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 2432967437136931839}
   - component: {fileID: 2432967437136931836}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title_tmp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 2432967437405997300}
   - component: {fileID: 2432967437405997302}
   - component: {fileID: 2432967437405997303}
+  - component: {fileID: 3268468713307750656}
   m_Layer: 5
   m_Name: Active Card
   m_TagString: Untagged
@@ -591,3 +592,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3268468713307750656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2432967437405997301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c86368b559397f45b0f476030e673e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2432967437040305301}
+  title_tmp: {fileID: 2432967437136931839}
+  description_tmp: {fileID: 2432967435804544137}
