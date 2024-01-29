@@ -46,8 +46,6 @@ public class CardManager : MonoBehaviour
             {
                 ReplenishACard();
             }
-            
-
         }
     }
 

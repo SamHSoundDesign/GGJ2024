@@ -112,8 +112,6 @@ public class GameManager : MonoBehaviour
         StartGameWithDelay();
         ingameUI.SetActive(true);
         countdownStart?.Invoke();
-
-
     }
 
     public void StartGameWithDelay()

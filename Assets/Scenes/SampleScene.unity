@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -495,7 +495,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -59}
-  m_SizeDelta: {x: 505.1, y: 50}
+  m_SizeDelta: {x: 821.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224515471
 MonoBehaviour:
@@ -517,7 +517,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FUCK THOSE OTTERS
+  m_text: 'You let them beat you?
+
+
+    Shame. On. You.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 321d6b4daee3651499a6b3a22b7086c3, type: 2}
   m_sharedMaterial: {fileID: -6049041659449228494, guid: 321d6b4daee3651499a6b3a22b7086c3, type: 2}
@@ -1472,12 +1475,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 629708727}
   - {fileID: 519346016}
   - {fileID: 456082395}
   - {fileID: 1898019619}
   - {fileID: 559484426}
   - {fileID: 1534457215}
-  - {fileID: 629708727}
   - {fileID: 378987219}
   - {fileID: 1678760279}
   - {fileID: 1690099803}
@@ -1521,7 +1524,7 @@ RectTransform:
   m_Children:
   - {fileID: 2051750787}
   m_Father: {fileID: 450433844}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1716,7 +1719,7 @@ RectTransform:
   m_Children:
   - {fileID: 1341593092}
   m_Father: {fileID: 450433844}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2005,7 +2008,7 @@ RectTransform:
   m_Children:
   - {fileID: 1955195662}
   m_Father: {fileID: 450433844}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2054,7 +2057,7 @@ RectTransform:
   - {fileID: 1536731019}
   - {fileID: 1783153739}
   m_Father: {fileID: 450433844}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5006,7 +5009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next Level
+  m_text: Try Again
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 321d6b4daee3651499a6b3a22b7086c3, type: 2}
   m_sharedMaterial: {fileID: -6049041659449228494, guid: 321d6b4daee3651499a6b3a22b7086c3, type: 2}
@@ -5015,8 +5018,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5252,7 +5255,7 @@ RectTransform:
   m_Children:
   - {fileID: 1469780773}
   m_Father: {fileID: 450433844}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6161,7 +6164,7 @@ RectTransform:
   m_Children:
   - {fileID: 59617469}
   m_Father: {fileID: 450433844}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6349,8 +6352,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

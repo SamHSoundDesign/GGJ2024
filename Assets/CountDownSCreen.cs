@@ -6,9 +6,11 @@ using UnityEngine;
 public class CountDownSCreen : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tmp;
+    private float defaultFontSize;
     private int counter = 5;
     private void OnEnable()
     {
+        defaultFontSize = tmp.fontSize;
         counter = 5;
         tmp.text = counter.ToString();
         StartCoroutine(OneSec(1));
@@ -21,13 +23,24 @@ public class CountDownSCreen : MonoBehaviour
 
         if(counter > 3)
         {
+            tmp.fontSize = defaultFontSize;
             tmp.text = counter.ToString();
             StartCoroutine(OneSec(delay));
         }
         else if(counter <= 3 && counter >= 0)
         {
-            tmp.text = counter.ToString();
-            StartCoroutine(OneSec(0.5f));
+            if (counter == 0)
+            {
+                tmp.fontSize = defaultFontSize /3;
+                tmp.text = "OTTER";
+                StartCoroutine(OneSec(0.5f));
+            }
+            else
+            {
+                tmp.fontSize = defaultFontSize;
+                tmp.text = counter.ToString();
+                StartCoroutine(OneSec(0.5f));
+            }
         }
         else
         {
