@@ -14,4 +14,7 @@ public class LevelDataSO : ScriptableObject
     public float lifeSpan = 3f;
     public ColorSchemeSO colorSchemeSO;
     public AudioClip levelMusic;
+    public int chanceOtterA = 1;
+    public int chanceOtterB = 1;
+    public int chanceOtterC = 1;
 }

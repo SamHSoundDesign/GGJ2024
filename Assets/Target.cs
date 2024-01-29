@@ -5,6 +5,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public int health;
+    public int pointsForKill = 100;
 
     public bool isInvicible = false;
 
@@ -14,6 +15,10 @@ public class Target : MonoBehaviour
     {
         health = GameManager.Instance.targetStartingHealth;
     }
+
+    
+
+
     private void OnMouseDown()
     {
         if(isInvicible == false)
@@ -36,7 +41,6 @@ public class Target : MonoBehaviour
             
             gp.Kill();
         }
-
     }
 
 

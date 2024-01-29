@@ -13,11 +13,15 @@ public class GridPoint : MonoBehaviour
     private float cooldownDuration = 1f;
     private float cooldownTime;
 
-    public void Activate(GameObject targetPrefab, float duration)
+    private DamageMultipliers damageMultiplier = DamageMultipliers.hundred;
+
+    public void Activate(OtterSO otterSO, float duration)
     {
         isActive = true;
-        SpawnTarget(targetPrefab);
-        SetDeactivateTimer(duration);
+        SpawnTarget(otterSO);
+
+        float deactivateDuration = duration * otterSO.lifeTimeMultiplier;
+        SetDeactivateTimer(deactivateDuration);
     }
     private void SetDeactivateTimer(float duration)
     {
@@ -38,15 +42,16 @@ public class GridPoint : MonoBehaviour
             isCoolingDown = false;
         }
     }
-    private void SpawnTarget(GameObject targetPrefab)
+    private void SpawnTarget(OtterSO otterSO)
     {
         if(target != null)
         {
             DestroyTarget();
         }
 
-        GameObject newTarget = Instantiate(targetPrefab, transform.position, transform.rotation, transform);
-        target = newTarget;
+        GameObject newTargetGO = Instantiate(otterSO.prefab, transform.position, transform.rotation, transform);
+        damageMultiplier = otterSO.damageMultiplier;
+        target = newTargetGO;
     }
     private void DestroyTarget()
     {
@@ -62,10 +67,34 @@ public class GridPoint : MonoBehaviour
     }
     public void Kill()
     {
+        GameObject prefab;
+        
+        switch (damageMultiplier)
+        {
+            case DamageMultipliers.hundred:
+                prefab = GameManager.Instance.hundredParticle;
+                break;
+            case DamageMultipliers.hundredfifty:
+                prefab = GameManager.Instance.hundredFiftyParticle;
+                break;
+            case DamageMultipliers.twohundred:
+                prefab = GameManager.Instance.twoHundredParticle;   
+                break;
+            default:
+                prefab = GameManager.Instance.hundredParticle;
+                break;
+        }
+
         Vector3 targetPos = target.transform.position;
+        targetPos.z -= 0.1f;
+
+        Instantiate(prefab, targetPos, Quaternion.identity, transform);
+        
+        targetPos.z -= 0.1f;
         Instantiate(GameManager.Instance.otterDeath_particle, targetPos, Quaternion.identity, transform);
-        GameManager.Instance.OtterKilled();
+        
         Deactivate();
+        GameManager.Instance.OtterKilled(damageMultiplier);
     }
 
     public void DeactivateLevelEnd()

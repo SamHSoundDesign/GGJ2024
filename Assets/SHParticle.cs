@@ -12,8 +12,6 @@ public class SHParticle : MonoBehaviour
     private void Start()
     {
         ps = GetComponent<ParticleSystem>();
-
-       
     }
 
     private Sprite GetSprite()

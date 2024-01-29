@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4534f3c59e48c4393e13dc9f23acbd, type: 3}
+  m_Name: OtterA
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5170187851407079335, guid: 76f6d5a246053464ab8ad45b010ee445, type: 3}
+  lifeTimeMultiplier: 1
+  damageMultiplier: 0

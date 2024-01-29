@@ -308,7 +308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1819b92b363a447b58fe95aa84c05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 4027789761160361011, guid: ff382d8d9e3e64e4dbc93fdb3528de1a, type: 3}
+  otterASO: {fileID: 11400000, guid: d65a90df8f2541146b332bb24a959839, type: 2}
+  otterBSO: {fileID: 11400000, guid: 7ad973ce058608048b6518bbe1fdd1d1, type: 2}
+  otterCSO: {fileID: 11400000, guid: 806b1a1637b46a04aabc26d7e9c746d4, type: 2}
+  gamestate: 2
   volumeModifier: -0.5
   levelNumber: 0
   levelDatas:
@@ -326,6 +329,9 @@ MonoBehaviour:
   damagePerClick: 4
   gameIntroSoundLenth: 4
   otterDeath_particle: {fileID: 6884599266424781551, guid: 07516ba5f79a04c4c946083c47ea842d, type: 3}
+  hundredParticle: {fileID: 9060360358245973644, guid: 45ed69f4ac13b6245b09b399d3737b99, type: 3}
+  hundredFiftyParticle: {fileID: 2065508518914816398, guid: 400ad08f80395d846a9da5411f928647, type: 3}
+  twoHundredParticle: {fileID: 3964739005702640549, guid: 96b3a17fe3ae3ca48a819e6d8ab6ebc4, type: 3}
   respawnRate: 1
   lifeSpan: 1
   targetStartingHealth: 4
@@ -335,6 +341,7 @@ MonoBehaviour:
   otterAudioSource: {fileID: 6442514192092985069}
   countDownClockAudioSource: {fileID: 2748740263871975565}
   ui_HitSFX: {fileID: 11400000, guid: 9e66df4891367644fa9169623ed9394d, type: 2}
+  ui_ButtonSFX: {fileID: 0}
   otterHitSFX: {fileID: 11400000, guid: 67bf8226af3c72b4db3ee9e9ee6b454a, type: 2}
   otterKilledSFX: {fileID: 0}
   otterMissedClickSFX: {fileID: 0}
@@ -343,6 +350,7 @@ MonoBehaviour:
   cardPlayedSFX: {fileID: 11400000, guid: cb950e750363756408938266e09fdbeb, type: 2}
   cardExpiredSFX: {fileID: 11400000, guid: 468c8bcf0246fba4f9879aef858ae21a, type: 2}
   fiveSecondTimerSFX: {fileID: 11400000, guid: f20a26de54faa044a8b1ec72e5399998, type: 2}
+  ingameUI: {fileID: 0}
   points: 0
   getCardMultiplierRequierd: 3
 --- !u!114 &2490142542714778451

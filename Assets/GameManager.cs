@@ -6,7 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject targetPrefab;
+    public OtterSO otterASO;
+    public OtterSO otterBSO;
+    public OtterSO otterCSO;
     public Gamestate gamestate = Gamestate.Menu;
     private GameEffect gameEffect = GameEffect.None;
 
@@ -35,8 +37,11 @@ public class GameManager : MonoBehaviour
 
     public float gameIntroSoundLenth = 3f;
 
-    //Spawns
+    //Particles
     public GameObject otterDeath_particle;
+    public GameObject hundredParticle; 
+    public GameObject hundredFiftyParticle;
+    public GameObject twoHundredParticle;
 
     public float respawnRate;
     public float lifeSpan = 0.5f;
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviour
     public int points = 0;
 
     [SerializeField] private int getCardMultiplierRequierd = 3;
+    
 
     private void Awake()
     {
@@ -160,7 +166,7 @@ public class GameManager : MonoBehaviour
         ui_HitSFX.PlayAudioClip(uiAudioSource);
         otterHitSFX.PlayAudioClip(otterAudioSource);
     }
-    public void OtterKilled()
+    public void OtterKilled(DamageMultipliers damageMultiplier)
     {
         killCount++;
 
@@ -172,8 +178,22 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No otterKilled SFX on gamemanager");
         }
+        int points = 0;
 
-        UpdatePoints();
+        switch (damageMultiplier)
+        {
+            case DamageMultipliers.hundred:
+                points = 100;
+                break;
+            case DamageMultipliers.hundredfifty:
+                points = 150;
+                break;
+            case DamageMultipliers.twohundred:
+                points = 200;
+                break;
+        }
+
+        UpdatePoints(points);
 
         if(HasWon())
         {
@@ -182,9 +202,9 @@ public class GameManager : MonoBehaviour
 
         otterKilled?.Invoke();
     }
-    private void UpdatePoints()
+    private void UpdatePoints(int points)
     {
-        points += (100 * multiplierCount);
+        this.points += (points * multiplierCount);
         pointsChanged?.Invoke();
     }
     private bool HasWon()
@@ -316,7 +336,27 @@ public class GameManager : MonoBehaviour
                     {
                         if (gridPoint.isActive == false && gridPoint.isCoolingDown == false)
                         {
-                            gridPoint.Activate(targetPrefab, lifeSpan);
+                            OtterSO otterSO;
+
+                            int i = currentLevelData.chanceOtterA + currentLevelData.chanceOtterB + currentLevelData.chanceOtterC;
+
+                            int random = UnityEngine.Random.Range(1, i + 1);
+
+                            if(random <= currentLevelData.chanceOtterA)
+                            {
+                                otterSO = otterASO;
+                            }
+                            else if (random <= currentLevelData.chanceOtterA + currentLevelData.chanceOtterB)
+                            {
+                                otterSO = otterBSO;
+
+                            }
+                            else
+                            {
+                                otterSO = otterCSO;
+                            }
+
+                            gridPoint.Activate(otterSO, lifeSpan);
                         }
                     }
 
