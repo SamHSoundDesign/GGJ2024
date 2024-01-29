@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: L06
   m_EditorClassIdentifier: 
   levelNumber: 6
-  availableCardSOs:
-  - {fileID: 11400000, guid: 33a96eccbb40b2b45a3c9fee4cc4ddfb, type: 2}
-  - {fileID: 11400000, guid: 230653f05302cb945826199176b8fedc, type: 2}
-  - {fileID: 11400000, guid: 333012b7aea6de743996b4d5d4dbc26c, type: 2}
   startingCardsAmount: 3
   randomiseCardOrder: 0
-  points: 3000
+  points: 7000
   levelTimeLimit: 60
-  respawnRate: 0.3
-  lifeSpan: 2
+  respawnRate: 0.8
+  lifeSpan: 0.4
   colorSchemeSO: {fileID: 11400000, guid: 4437d7f09da4835428583f030989fbbc, type: 2}
   levelMusic: {fileID: 8300000, guid: b22b0bdc9f4040e418d4e0f31e289d0d, type: 3}
