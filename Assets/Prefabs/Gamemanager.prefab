@@ -338,6 +338,8 @@ MonoBehaviour:
   otterMissedClickSFX: {fileID: 0}
   levelWinSFX: {fileID: 11400000, guid: be6999908be243341b07aa5f5bf4d49b, type: 2}
   levelLossSFX: {fileID: 0}
+  cardPlayedSFX: {fileID: 11400000, guid: cb950e750363756408938266e09fdbeb, type: 2}
+  cardExpiredSFX: {fileID: 11400000, guid: 468c8bcf0246fba4f9879aef858ae21a, type: 2}
   getCardMultiplierRequierd: 3
 --- !u!114 &2490142542714778451
 MonoBehaviour:

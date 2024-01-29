@@ -77,4 +77,4 @@ MonoBehaviour:
   cardID: BASE CARD
   duration: 3
   isPermanent: 0
-  speedIncreaseAmount: 0.5
+  speedIncreaseAmount: 2

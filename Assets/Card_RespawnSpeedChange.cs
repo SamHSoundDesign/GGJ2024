@@ -8,7 +8,7 @@ public class Card_RespawnSpeedChange : Card
 
     private void Start()
     {
-        ActivateCard();
+        //ActivateCard();
     }
 
     public override void ActivateCard()

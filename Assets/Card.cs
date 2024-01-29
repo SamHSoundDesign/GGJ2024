@@ -48,7 +48,7 @@ public class Card : MonoBehaviour
     {
         if (isLocked == false)
         {
-            ActivateCard();
+            //ActivateCard();
             return;
         }
     }

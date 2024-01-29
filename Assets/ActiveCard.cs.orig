@@ -46,11 +46,14 @@ public class ActiveCard : MonoBehaviour
 
     public void DeactivateActiveCard()
     {
+<<<<<<< HEAD
+
+=======
         if (setupComplete)
         {
             cardExpired?.Invoke();
         }
-
+>>>>>>> origin/main
         gameObject.SetActive(false);
         setupComplete = true;
 

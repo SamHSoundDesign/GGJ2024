@@ -193,18 +193,8 @@ public class GameManager : MonoBehaviour
     }
     public bool SetNewRespawnRate(float newSpeed, bool isPermanent)
     {
-        if(respawnRate > newSpeed && isPermanent == false)
-        {
-            return false;
-        }
-
-        float timeUntilScheduledSpawn = nextRespawn - Time.time;
-
-        float delta = newSpeed - respawnRate;
-        timeUntilScheduledSpawn -= delta;
         respawnRate = newSpeed;
-
-        SetNextSpawnTime(timeUntilScheduledSpawn);
+        SetNextSpawnTime(respawnRate);
 
         if(isPermanent)
         {
@@ -250,12 +240,12 @@ public class GameManager : MonoBehaviour
                 CardManager.Instance.PlayCard(0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 CardManager.Instance.PlayCard(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 CardManager.Instance.PlayCard(2);
             }

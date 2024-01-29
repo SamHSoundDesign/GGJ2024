@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6514717974510461168, guid: 7115df973cc7e5a4ebf45508e5f1caaa, type: 3}
       propertyPath: m_Name
-      value: Card_3xRespawn_5Secs
+      value: Card_3xRespawn_5Secs Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7115df973cc7e5a4ebf45508e5f1caaa, type: 3}
@@ -77,4 +77,4 @@ MonoBehaviour:
   cardID: BASE CARD
   duration: 5
   isPermanent: 0
-  speedIncreaseAmount: 3
+  speedIncreaseAmount: 0.3
