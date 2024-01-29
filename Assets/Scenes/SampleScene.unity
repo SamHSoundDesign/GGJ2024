@@ -7658,6 +7658,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 629708726}
     - target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
+      propertyPath: ui_ButtonSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 37b1819131e001742bb8b173db8ca381, type: 2}
+    - target: {fileID: 2490142542714778450, guid: bacd39af6b972ce41aef6b2f4b23e070, type: 3}
       propertyPath: volumeModifier
       value: -0.3
       objectReference: {fileID: 0}
