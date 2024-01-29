@@ -42,6 +42,7 @@ public class ActiveCard : MonoBehaviour
 
     public void DeactivateActiveCard()
     {
+
         gameObject.SetActive(false);
 
     }
